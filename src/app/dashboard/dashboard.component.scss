@@ -1,1 +1,8 @@
-@import "../home/home.component.scss";
+.page {
+  padding: 0 1rem;
+  &__box {
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 36px;
+  }
+}
