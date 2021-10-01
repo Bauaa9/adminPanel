@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light  " style="width: 100%;font-size: larger;">
   <div class="container-fluid "style="margin-left:300px;">
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup1">
       <div class="navbar-nav ml-5"  >
         <a class="nav-link " aria-current="page" href="unbilled_txn">Unbilled Transaction</a>
         <a class="nav-link ml-5" href="last-statement">Last Statement</a>
@@ -40,7 +40,7 @@
 <mat-divider></mat-divider>
 
 <div class="mt-5 mr-5" style="width: 1000px;margin-left: 20%;">
-  <table class="table table-striped">
+  <table class="table ">
     <thead>
       <tr class=" bg-dark" style="color: orangered;">
         <th scope="col" class="border border-white">Date</th>
@@ -50,13 +50,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let customer of cust" class="text-white border border-white">
-        <th class="border border-white">{{customer.date}}</th>
-        <td class="border border-white">{{customer.place}}</td>
-        <td class="border border-white">{{customer.amount}}</td>
-
-
-      </tr>
+    <tr *ngFor="let transactionDetails of responseData['billedTxn'];let indexOfelement=index;" class="text-white border border-white">
+      <th class="border border-white">{{indexOfelement}}</th>
+      <td class="border border-white">{{transactionDetails.date_time}}</td>
+      <td class="border border-white">Rs.{{transactionDetails.expenditure}}</td>
+    </tr>
 
     </tbody>
   </table>
@@ -72,3 +70,4 @@
       <li class="page-item"><a class="page-link" href="#">Next</a></li>
     </ul>
   </nav>
+  </div></div>
