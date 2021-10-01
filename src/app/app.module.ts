@@ -16,6 +16,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {RetailTransactionComponent} from './Retail-Transaction/Retail-Transaction.component';
+import {SaveCardComponent} from './save-card/save-card.component';
+import {CreditCardTransactionComponent} from './creditCard-Transaction/creditCard-Transaction.component';
+import {ProfileComponent} from './profile/profile.component';
+import {SaveAddressComponent} from './save-address/save-address.component';
+import {ViewStatementComponent} from './view-statement/view-statement.component';
+import {UnbilledTxnComponent} from './unbilled-txn/unbilled-txn.component';
+import {LastStatementComponent} from './last-statement/last-statement.component';
+import {CustTransactionComponent} from './cust-transaction/cust-transaction.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -24,6 +34,15 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     HomeComponent,
     DashboardComponent,
     SidenavComponent,
+    RetailTransactionComponent,
+    CreditCardTransactionComponent,
+    CustTransactionComponent,
+    SaveCardComponent,
+    SaveAddressComponent,
+    ProfileComponent,
+    ViewStatementComponent,
+    UnbilledTxnComponent,
+    LastStatementComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +56,8 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     MatDividerModule,
     MatListModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

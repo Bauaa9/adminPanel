@@ -1,0 +1,71 @@
+<div class="fixed-top  " style="width: 100%; margin-top: 60px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light  " style="width: 100%;">
+    <div class="container-fluid ">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="margin-left: 300px;">
+          <a class="nav-link " aria-current="page" href="retail-transaction">Retail Transaction</a>
+          <a class="nav-link ml-5" href="creditCard-transaction">Credit Card Transaction</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<div style="margin-left: 350px;">
+<div class=" mt-5" style="width: 100%;">
+<div class="float-right w-25">
+  <label class="font-weight-bold">Last Statement <label class="text-warning">: {{responseData?.cardlimit?.laststatementdate}}</label></label>
+  <label class="font-weight-bold">Pmt Due Date <label class="text-warning">: {{responseData?.cardlimit?.paymentduedate}}</label></label>
+</div>
+
+
+
+<div class="mx-auto rounded mt-2" style="width: 250px; border: 1px solid black; background-color:rgb(161, 161, 35)">
+  <div class="p-3">
+    <label>Active</label>
+    <label class="ml-3">VISA ICICI Coral Contactless</label>
+    <label class="font-weight-bold ml-3">{{responseData?.cardetails?.card_number}}</label>
+    <label>{{responseData?.cardetails?.card_holder_name}}</label>
+    <button type="button" class="btn btn-success ml-5" (click)="open(content)" >View CVV/Expiry</button>
+  </div>
+</div>
+
+
+<table class="table table-bordered mt-5 mx-auto p-6" style="width: 800px; background-color: whitesmoke;">
+  <tbody>
+    <tr>
+      <td>Total Outstanding  <label class="text-warning"> :Rs {{responseData?.totaloutstanding}}</label><button type="button" class="btn btn-success ml-4">Pay</button></td>
+      <td>Reward Points  <label class="text-warning"> :{{responseData?.cardlimit?.rewardpoints}}</label></td>
+    </tr>
+    <tr>
+      <td>Total Cr Limit  <label class="text-warning"> :Rs {{responseData?.cardlimit?.totalcreditlimit}}</label></td>
+      <td>Avail. Cr Limit  <label class="text-warning"> :{{responseData?.cardlimit?.availablecreditlimit}}</label> </td>
+    </tr>
+    <tr>
+      <td >Total Cash Limit  <label class="text-warning"> :Rs {{responseData?.cardlimit?.totalcashlimit}}</label></td>
+      <td>Avail. Cash Limit  <label class="text-warning"> :Rs {{responseData?.cardlimit?.availablecashlimit}}</label></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="text-center p-3 " >
+<button type="button" class="btn btn-success w-22" routerLink="/view-stmt" >View Statement</button>
+</div>
+</div>
+</div>
+</div>
+<!--pop up-->
+
+<ng-template #content let-modal  style="width:10%">
+
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="background-color:rgb(161, 161, 35);">
+    <h3 class="mx-auto">CVV : 456</h3>
+    <h3 class="mx-auto">Expiry Date: 08/29</h3>
+  </div>
+</ng-template>
+

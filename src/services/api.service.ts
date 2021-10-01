@@ -5,17 +5,18 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-  baseUrl="";
+  baseUrl="http://localhost:8083";
   constructor(private http: HttpClient) { }
 
   public api(methodName:string,body:any,url:string, headerWithToken?: boolean){
     let token = localStorage.getItem('userToken');
     let headers={
-      'content-type':'application/json'
+      'Content-Type':'application/json'
     };
     if(headerWithToken==true){
+      token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb2hpdCIsImV4cCI6MTYzMzA5MTU0OSwiaWF0IjoxNjMzMDczNTQ5fQ.3egSxDCUXAx1qDOwT0fQQQtscBxRCF_LqjuaDfj_G0wrsxF38lTqYLiRNK8uHdzI0sJkYF5413kzDD02IXlSwA';
       headers = {
-        'content-type':'application/json',
+        'Content-Type':'application/json',
         // @ts-ignore
         'Authorization':'Bearer '+token
       }

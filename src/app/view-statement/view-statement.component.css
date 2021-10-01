@@ -1,0 +1,26 @@
+.rasi{
+  margin-left: 50px;
+margin-bottom: 50px;
+margin-top: 20px;
+font-size: 25;
+letter-spacing: 2px;
+justify-content: center;
+}
+label{
+  margin-right:100px;
+  font-weight: bold;
+  font-size: 20;
+  letter-spacing: 2px;
+}
+mat-expansion-panel{
+ width: 50%;
+}
+.ubt{
+  margin-right: 40px;
+  font-size: large;
+
+
+}
+a:hover{
+  color:orange;
+}

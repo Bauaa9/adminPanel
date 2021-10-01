@@ -1,0 +1,64 @@
+
+<div class="fixed-top  " style="width: 100%; margin-top: 60px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light  " style="width: 100%;">
+    <div class="container-fluid ">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="margin-left: 300px ;">
+          <a class="nav-link " aria-current="page" href="retail-transaction">Retail Transaction</a>
+          <a class="nav-link ml-5" href="creditCard-transaction">Credit Card Transaction</a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div style="width: 80%;margin-left: 20%; margin-top: 3%;">
+    <table class="table table-striped">
+      <thead>
+        <tr class=" bg-dark" style="color: orangered;">
+          <th scope="col" class="border border-white">Txn Dt/Time</th>
+          <th scope="col" class="border border-white">Merchant Name</th>
+          <th scope="col" class="border border-white">Order Id</th>
+          <th scope="col" class="border border-white">Payment Id</th>
+          <th scope="col" class="border border-white">Amt(Rs)</th>
+          <th scope="col" class="border border-white">Payment Details</th>
+          <th scope="col" class="border border-white">Payment Method</th>
+          <th scope="col" class="border border-white">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of totalTransaction" class="text-white border border-white">
+          <th class="border border-white">{{data.txnDate}}</th>
+          <td class="border border-white">{{data.merchantName}}</td>
+          <td class="border border-white">{{data.orderID}}</td>
+          <td class="border border-white">{{data.paymentID}}</td>
+          <td class="border border-white">{{data.amount}}</td>
+          <td class="border border-white">{{data.paymentDetail}}</td>
+          <td class="border border-white">{{data.paymentMethod}}</td>
+          <td class="border border-white">{{data.status}}</td>
+
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
+
+
+    <nav aria-label="Page navigation example" class="float-right">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+
+
+
+
+
+

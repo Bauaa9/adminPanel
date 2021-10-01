@@ -1,0 +1,74 @@
+
+<div class="fixed-top  " style="width: 100%; margin-top: 60px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light  " style="width: 100%;">
+    <div class="container-fluid ">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="margin-left: 300px;font-size: larger;">
+          <a class="nav-link " aria-current="page" href="retail-transaction">Retail Transaction</a>
+          <a class="nav-link ml-5" href="creditCard-transaction">Credit Card Transaction</a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+<mat-divider></mat-divider>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light  " style="width: 100%;font-size: larger;">
+  <div class="container-fluid "style="margin-left:300px;">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-5"  >
+        <a class="nav-link " aria-current="page" href="unbilled_txn">Unbilled Transaction</a>
+        <a class="nav-link ml-5" href="last-statement">Last Statement</a>
+
+      </div>
+    </div>
+</div>
+</nav>
+
+
+  <mat-divider></mat-divider>
+
+  <div style="margin-left: 20px">
+    <div class=" mt-5" style="width: 100%;">
+    <div class="mr-5" style="margin-left: 30%; font-weight: bold;font-size: larger;">
+      <label class="font-weight-bold;font-size:large">Total Amt Due <label class="text-warning" style="margin-right: 200px;">: Rs 1000/-
+      <button style="background-color: rgb(73, 240, 73);">Pay</button></label></label>
+      <label class="font-weight-bold">Min Amt Due <label class="text-warning">: Rs 200/-
+        <button style="background-color: rgb(73, 240, 73);">Pay</button>
+      </label></label>
+    </div>
+<mat-divider></mat-divider>
+
+<div class="mt-5 mr-5" style="width: 1000px;margin-left: 20%;">
+  <table class="table table-striped">
+    <thead>
+      <tr class=" bg-dark" style="color: orangered;">
+        <th scope="col" class="border border-white">Date</th>
+        <th scope="col" class="border border-white">Place</th>
+        <th scope="col" class="border border-white">Amount</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of cust" class="text-white border border-white">
+        <th class="border border-white">{{customer.date}}</th>
+        <td class="border border-white">{{customer.place}}</td>
+        <td class="border border-white">{{customer.amount}}</td>
+
+
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</div>
+
+   <nav aria-label="Page navigation example" style="margin-left: 70%;">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
