@@ -1,0 +1,15 @@
+<div class="container-fluid-page">
+<!-- partial:index.partial.html -->
+<link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <div class="box">
+   <form  (ngSubmit)="submitOtp()" name="form1">
+     <h3>OTP Verification</h3>
+     <div class="row">
+      <input matInput type="password" [(ngModel)]="otp" name="otp" minlength="4" maxlength="4" placeholder="Enter OTP here" required>
+     </div>
+     <button type="submit" class="button">Submit OTP</button>
+   </form>
+  </div>
+</div>
+</div>

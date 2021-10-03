@@ -17,7 +17,6 @@ import { MatListModule } from '@angular/material/list';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {RetailTransactionComponent} from './Retail-Transaction/Retail-Transaction.component';
-import {SaveCardComponent} from './save-card/save-card.component';
 import {CreditCardTransactionComponent} from './creditCard-Transaction/creditCard-Transaction.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SaveAddressComponent} from './save-address/save-address.component';
@@ -26,6 +25,15 @@ import {UnbilledTxnComponent} from './unbilled-txn/unbilled-txn.component';
 import {LastStatementComponent} from './last-statement/last-statement.component';
 import {CustTransactionComponent} from './cust-transaction/cust-transaction.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {PaymentOptionsComponent} from './payment-options/payment-options.component';
+import {SavedCardsComponent} from './saved-cards/saved-cards.component';
+import {OtpComponent} from './otp/otp.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import {InputMaskAngularModule} from 'input-mask-angular';
+import {SavedDetailsComponent} from './saved-details/saved-details.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +45,15 @@ import {MatTabsModule} from '@angular/material/tabs';
     RetailTransactionComponent,
     CreditCardTransactionComponent,
     CustTransactionComponent,
-    SaveCardComponent,
     SaveAddressComponent,
     ProfileComponent,
     ViewStatementComponent,
     UnbilledTxnComponent,
-    LastStatementComponent
+    LastStatementComponent,
+    PaymentOptionsComponent,
+    OtpComponent,
+    SavedCardsComponent,
+    SavedDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +69,13 @@ import {MatTabsModule} from '@angular/material/tabs';
     HttpClientModule,
     NgxSpinnerModule,
     MatTabsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatStepperModule,
+    MatSelectModule,
+    InputMaskAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent],

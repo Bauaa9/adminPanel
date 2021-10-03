@@ -1,0 +1,151 @@
+<div class="container-fluid page">
+    <!-- Header -->
+    <nav class="navbar navbar-expand navbar-light shadow mb-3">
+      <img class="slytherin" [src]=slytherin>
+        <div class="container">
+            <h2 >
+               PAYMENT
+            </h2>
+            <div class="total">Total : {{amount}}</div>
+        </div>
+    </nav>
+
+
+  <!-- partial:index.partial.html -->
+<div class="row">
+  <!--<div class="container1">
+    <div class="col-mx-auto">
+      <div class="option1">
+        <p>Net Banking</p>
+      </div>
+      <div class="option1">
+        <p>UPI Transfer</p>
+      </div>
+      <div class="option1">
+        <p>Debit/Credit card</p>
+      </div>
+      <div class="option1">
+        <p>Wallets</p>
+      </div>
+      <div class="option1">
+        <p>QR code</p>
+      </div>
+    </div>
+  </div>-->
+
+
+  <div class="col-md-5 col-md-offset-4">
+
+    <form class="container2" (ngSubmit)="payment()" [formGroup]="myForm" ngNativeValidate>
+      <img class="logo" [src]=combinedLogo>
+
+      <div class="form-check ">
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="debit" value="debit" name="type"
+            formControlName="type" [(ngModel)]="user.type" required>
+          <label for="debit">Debit</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio"  class="form-check-input" id="credit" value="debit" name="type"
+            formControlName="type" [(ngModel)]="user.type" required>
+          <label for="credit">Credit</label>
+        </div>
+        <span  class="status"
+          *ngIf="(myForm.controls['type'].touched || myForm.controls['type'].dirty )
+                && (myForm.controls['type'].invalid)">
+          Card type is required!
+        </span>
+      </div>
+
+      <div class="form-row">
+          <label for="cardNum">Card Number :</label>
+          <input #cardNum  (input)="getNum($event.target.value)" [style.background-image]=finalUrl
+            [mask]="'[0000] [0000] [0000] [0000]'" (extractedValue)="user.cardNum"
+            type="text" class="form-control" id="cardNum" name="cardNum"
+            formControlName="cardNum" [(ngModel)]="user.cardNum" maxlength=19
+          >
+          <span  class="status"
+            *ngIf="(myForm.controls['cardNum'].touched || myForm.controls['cardNum'].dirty )
+                  && (myForm.controls['cardNum'].invalid)
+                  && (myForm.controls['cardNum'].hasError('required'))">
+            Card number is required!
+          </span>
+          <span class="status"
+            *ngIf="(myForm.controls['cardNum'].hasError('pattern'))">
+            Enter valid Card number!
+          </span>
+          <span class="status"
+            *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
+                  && (myForm.controls['cardNum'].hasError('minlength'))">
+            Card number must be 16 digits!
+          </span>
+          <span class="status"
+            *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
+                  && mod10(myForm.controls.cardNum.value) == false">
+            Enter valid Card number!
+          </span>
+
+      </div>
+
+      <div class="form-row row">
+        <div class="col-6">
+          <label for="expDate">Expiry Date :</label>
+          <input type="month" class="form-control" id="expDate" name="expDate"
+            formControlName="expDate" [(ngModel)]="user.expDate" required>
+          <span  class="status"
+            *ngIf="(myForm.controls['expDate'].touched || myForm.controls['expDate'].dirty )
+                  && (myForm.controls['expDate'].invalid)
+                  && (myForm.controls['expDate'].hasError('required'))">
+            Expiry date is required!
+          </span>
+        </div>
+        <div class="col-5">
+          <label for="cvv">CVV :</label>
+          <input type="password" id="cvv" class="form-control" name="cvv"
+            formControlName="cvv" [(ngModel)]="user.cvv" maxlength=3>
+          <span  class="status"
+            *ngIf="(myForm.controls['cvv'].touched || myForm.controls['cvv'].dirty )
+                  && (myForm.controls['cvv'].invalid)
+                  && (myForm.controls['cvv'].hasError('required'))">
+            CVV is required!
+          </span>
+          <span class="status"
+            *ngIf="(myForm.controls['cvv'].hasError('minlength'))
+                  && !(myForm.controls['cvv'].hasError('pattern'))">
+            CVV must be 3 digits!
+          </span>
+          <span class="status" *ngIf="(myForm.controls['cvv'].hasError('pattern')) ">
+            Enter valid CVV!
+          </span>
+        </div>
+      </div>
+
+      <div class="form-row">
+          <label for="holderName">Name on Card :</label>
+          <input type="text" class="form-control" id="holderName" name="holderName"
+            formControlName="holderName" [(ngModel)]="user.holderName" required>
+          <span  class="status"
+            *ngIf="(myForm.controls['holderName'].touched || myForm.controls['holderName'].dirty )
+                  && myForm.controls['holderName'].invalid
+                  && myForm.controls['holderName'].hasError('required')">
+            Name is required!
+          </span>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Pay Now</button>
+
+    </form>
+
+  </div>
+
+  <div class="col eg">
+    <img src="../assets/paymentGif.gif" class="gif">
+  </div>
+
+</div>
+</div>
+
+
+
+
+

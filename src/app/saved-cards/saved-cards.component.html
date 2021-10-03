@@ -1,0 +1,169 @@
+
+    <div class="insertcard" (click)="addClicked()">
+      <svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="grey"
+        class="bi bi-credit-card-2-back" viewBox="0 0 20 16">
+        <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z"/>
+        <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z"/>
+      </svg>Add card
+    </div>
+
+
+    <div class="overlay" *ngIf="click">
+      <div class="container1">
+        <form class="container2" (ngSubmit)="addCard()" [formGroup]="myForm" ngNativeValidate>
+
+          <div class="form-row row">
+            <div class="col-6">
+              Card Number :<input #cardNum (input)="getNum($event.target.value)" [style.background-image]=finalLogoUrl
+                [mask]="'[0000] [0000] [0000] [0000]'" (extractedValue)="card.cardNum"
+                placeholder="Card number" type="text" class="form-control" id="cardNum" name="cardNum"
+                formControlName="cardNum" [(ngModel)]="card.cardNum" maxlength=19>
+              <span  class="status"
+                *ngIf="(myForm.controls['cardNum'].touched || myForm.controls['cardNum'].dirty )
+                      && (myForm.controls['cardNum'].invalid)
+                      && (myForm.controls['cardNum'].hasError('required'))">
+                Card number is required!
+              </span>
+              <span class="status"
+                *ngIf=" (myForm.controls['cardNum'].hasError('pattern'))">
+                Enter valid Card number!
+              </span>
+              <span class="status"
+                *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
+                     && (myForm.controls['cardNum'].hasError('minlength'))">
+                Card number must be 16 digits!
+              </span>
+              <span class="status"
+                *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
+                      && mod10(myForm.controls.cardNum.value) == false">
+                Enter valid Card number!
+              </span>
+            </div>
+
+            <div class="col-5">
+              Card holder Name :<input placeholder="Card holder name" type="text" class="form-control"
+                id="holderName" name="holderName"
+                formControlName="holderName" [(ngModel)]="card.holderName" required>
+              <span  class="status"
+                *ngIf="(myForm.controls['holderName'].touched || myForm.controls['holderName'].dirty )
+                      && myForm.controls['holderName'].invalid
+                      && myForm.controls['holderName'].hasError('required')">
+               Name is required!
+              </span>
+            </div>
+          </div>
+
+          <div class="form-row row">
+            <div class="col-4">
+              Choose a Card Type :<select name="cardType" formControlName="cardType" [(ngModel)]="card.cardType" required>
+                <option id="debit" value="debit">Debit</option>
+                <option id="credit" value="credit">Credit</option>
+              </select>
+              <span  class="status"
+                *ngIf="(myForm.controls['cardType'].touched || myForm.controls['cardType'].dirty )
+                    && (myForm.controls['cardType'].invalid)">
+                Card type is required!
+              </span>
+            </div>
+
+            <div class="col-4">
+              Expiry :<input placeholder="Exp date"  type="month" class="form-control" id="expDate" name="expDate"
+                formControlName="expDate" [(ngModel)]="card.expDate" required>
+              <span  class="status"
+                *ngIf="(myForm.controls['expDate'].touched || myForm.controls['expDate'].dirty )
+                      && (myForm.controls['expDate'].invalid)
+                      && (myForm.controls['expDate'].hasError('required'))">
+                Expiry date is required!
+              </span>
+            </div>
+
+            <div class="col-3">
+              CVV :<input placeholder="cvv" type="password" id="cvv" class="form-control" name="cvv"
+                formControlName="cvv" [(ngModel)]="card.cvv" maxlength=3>
+              <span  class="status"
+                *ngIf="(myForm.controls['cvv'].touched || myForm.controls['cvv'].dirty )
+                  && (myForm.controls['cvv'].invalid)
+                  && (myForm.controls['cvv'].hasError('required'))">
+                CVV is required!
+              </span>
+              <span class="status"
+              *ngIf="(myForm.controls['cvv'].hasError('minlength'))
+                    && !(myForm.controls['cvv'].hasError('pattern'))">
+                CVV must be 3 digits!
+              </span>
+              <span class="status"
+                *ngIf="(myForm.controls['cvv'].hasError('pattern')) ">
+                Enter valid CVV!
+              </span>
+            </div>
+          </div>
+
+          <div class="col">
+            <button mat-raised-button color="red" type="submit" [disabled]="!myForm.valid">Add Card
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+    <div class="overlay" *ngIf="spinner">
+      <div class="displayspinner">
+        <button class="btn" type="button">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      </div>
+
+      <!--<div class="text-center" >
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>-->
+    </div>
+
+
+
+    <table *ngFor="let dummy of dum" class="firstbox">
+
+          <div class="maincard">
+            <div class="set1">
+              <div class="float-child">
+                <img class="chip" [src]=chipLogo>
+              </div>
+              <div class="num">
+                {{dummy.card_number}}
+              </div>
+            </div>
+
+            <div class="set2">
+              <div class="expDate">
+                VALID TILL - {{dummy.expiry_date}}
+              </div>
+            </div>
+
+            <div *ngIf="dummy.card_number.charAt(0) == '4'">
+              <img class="logo" [src]=visaLogo>
+            </div>
+            <div *ngIf="dummy.card_number.charAt(0) == '5'">
+              <img class="logo" [src]=masterCardLogo>
+            </div>
+
+            <div class="name" style = "text-transform:uppercase;">
+              {{dummy.card_holder_name}}
+            </div>
+
+          </div>
+<!--          <button mat-icon-button class="delete" color="warn" (click)="deleteCard(dummy)">-->
+<!--        <span> Delete<mat-icon >delete</mat-icon></span>-->
+<!--          </button>-->
+
+      <button mat-raised-button class="delete" color="warn">Delete</button>
+      </table>
+
+
+
+
+
+

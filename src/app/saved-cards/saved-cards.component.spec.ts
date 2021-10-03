@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SaveCardComponent } from './save-card.component';
+import { SavedCardsComponent } from './saved-cards.component';
 
-describe('SaveCardComponent', () => {
-  let component: SaveCardComponent;
-  let fixture: ComponentFixture<SaveCardComponent>;
+describe('SavedCardsComponent', () => {
+  let component: SavedCardsComponent;
+  let fixture: ComponentFixture<SavedCardsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SaveCardComponent ]
+      declarations: [ SavedCardsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SaveCardComponent);
+    fixture = TestBed.createComponent(SavedCardsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

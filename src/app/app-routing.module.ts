@@ -10,7 +10,9 @@ import {ProfileComponent} from './profile/profile.component';
 import {ViewStatementComponent} from './view-statement/view-statement.component';
 import {UnbilledTxnComponent} from './unbilled-txn/unbilled-txn.component';
 import {LastStatementComponent} from './last-statement/last-statement.component';
-import {SaveCardComponent} from './save-card/save-card.component';
+import {SavedCardsComponent} from './saved-cards/saved-cards.component';
+import {PaymentOptionsComponent} from './payment-options/payment-options.component';
+import {OtpComponent} from './otp/otp.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,12 +21,14 @@ const routes: Routes = [
   {path: 'retail-transaction', component: RetailTransactionComponent},
   {path: 'creditCard-transaction', component: CreditCardTransactionComponent},
   {path: 'cust-Transaction', component: CustTransactionComponent},
-  {path: 'save-cards', component: SaveCardComponent},
+  { path: 'details', component: SavedCardsComponent},
   {path: 'save-adresses', component: SaveAddressComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'view-stmt', component: ViewStatementComponent},
   {path: 'unbilled_txn', component: UnbilledTxnComponent},
-  {path: 'last-statement', component:LastStatementComponent}
+  {path: 'last-statement', component:LastStatementComponent},
+  { path: 'payment', component: PaymentOptionsComponent},
+  { path: 'otp', component: OtpComponent},
 ];
 
 @NgModule({

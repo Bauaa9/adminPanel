@@ -1,0 +1,74 @@
+
+.container{
+   position: relative;
+   width: 100%;  height: 100vh;
+}
+.container:before{
+    content: '';
+    position: absolute;
+    top: 0;  left: 0;
+    width: 100%;  height: 100%;
+    background: url(https://media.gettyimages.com/photos/signage-is-illuminated-atop-a-standard-chartered-plc-bank-branch-at-picture-id1158428078?k=20&m=1158428078&s=612x612&w=0&h=9fghGE8xb3na-mmhCFjAsQAWVg283TOxcCC1Lh4FE2A=);
+    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+}
+
+.container .box{
+    position: absolute;
+    top: 50%;  left: 62%;
+    transform: translateY(-50%);
+    background: #fff;
+    padding: 25px 60px;
+    width: 370px;
+    box-sizing: border-box;
+    z-index:1;
+}
+
+.container .box .row{
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.container .box input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 20px;
+    font-size: 20px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #262626;
+    color: #aaa;
+}
+
+.container .box .row:before{
+    content: '\f007';
+    font-family: fontAwesome;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;  left: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    cursor: pointer;
+}
+
+
+button {
+	background-color: #008CBA;
+	width: 60%;
+	padding: 3%;
+	border: none;
+	color: white;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	margin-bottom: 4%;
+  font-size: 1.36em;
+  margin-left: 21%;
+}
+
+button:hover {
+	background-color: #04a51f;
+}
