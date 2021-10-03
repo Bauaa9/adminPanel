@@ -152,7 +152,7 @@ addCard() {
   // tslint:disable-next-line: typedef
 displayCard() {
   this.spinner.show();
-
+  console.log('sadfhosadfsldnf');
   this.service.api("post",{},"/display-cards",true)
   .subscribe(
       (resp:Card[]) => {
@@ -186,20 +186,16 @@ convert() {
 
   // tslint:disable-next-line: typedef
   deleteCard(del: any) {
-    console.log(del.card_id);
-    console.log(typeof del.card_id)
     this.spinner.show();
-
     this.service.api("delete",{},"/delete-card/"+del.card_id,true)
     .subscribe(
       (resp) => {
         console.log(resp);
-        this.spinner.hide();
         this.displayCard();
       },
       (err) => {
-        this.spinner.hide();
         console.log(err);
+        this.displayCard();
       }
     );
   }
