@@ -15,9 +15,9 @@
           <div class="form-row row">
             <div class="col-6">
               Card Number :<input #cardNum (input)="getNum($event.target.value)" [style.background-image]=finalLogoUrl
-                [mask]="'[0000] [0000] [0000] [0000]'" (extractedValue)="card.cardNum"
-                placeholder="Card number" type="text" class="form-control" id="cardNum" name="cardNum"
-                formControlName="cardNum" [(ngModel)]="card.cardNum" maxlength=19>
+                                  [mask]="'[0000] [0000] [0000] [0000]'" (extractedValue)="card.card_number"
+                                  placeholder="Card number" type="text" class="form-control" id="cardNum" name="cardNum"
+                                  formControlName="cardNum" [(ngModel)]="card.card_number" maxlength=19>
               <span  class="status"
                 *ngIf="(myForm.controls['cardNum'].touched || myForm.controls['cardNum'].dirty )
                       && (myForm.controls['cardNum'].invalid)
@@ -42,8 +42,8 @@
 
             <div class="col-5">
               Card holder Name :<input placeholder="Card holder name" type="text" class="form-control"
-                id="holderName" name="holderName"
-                formControlName="holderName" [(ngModel)]="card.holderName" required>
+                                       id="holderName" name="holderName"
+                                       formControlName="holderName" [(ngModel)]="card.card_holder_name" required>
               <span  class="status"
                 *ngIf="(myForm.controls['holderName'].touched || myForm.controls['holderName'].dirty )
                       && myForm.controls['holderName'].invalid
@@ -55,7 +55,7 @@
 
           <div class="form-row row">
             <div class="col-4">
-              Choose a Card Type :<select name="cardType" formControlName="cardType" [(ngModel)]="card.cardType" required>
+              Choose a Card Type :<select name="cardType" formControlName="cardType" [(ngModel)]="card.card_type" required>
                 <option id="debit" value="debit">Debit</option>
                 <option id="credit" value="credit">Credit</option>
               </select>
@@ -67,8 +67,8 @@
             </div>
 
             <div class="col-4">
-              Expiry :<input placeholder="Exp date"  type="month" class="form-control" id="expDate" name="expDate"
-                formControlName="expDate" [(ngModel)]="card.expDate" required>
+              Expiry :<input placeholder="Exp date" type="month" class="form-control" id="expDate" name="expDate"
+                             formControlName="expDate" [(ngModel)]="card.expiry_date" required>
               <span  class="status"
                 *ngIf="(myForm.controls['expDate'].touched || myForm.controls['expDate'].dirty )
                       && (myForm.controls['expDate'].invalid)
@@ -106,25 +106,6 @@
         </form>
       </div>
     </div>
-
-
-    <div class="overlay" *ngIf="spinner">
-      <div class="displayspinner">
-        <button class="btn" type="button">
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Loading...
-        </button>
-      </div>
-
-      <!--<div class="text-center" >
-        <div class="spinner-border" role="status">
-          <span class="sr-only"></span>
-        </div>
-      </div>-->
-    </div>
-
-
-
     <table *ngFor="let dummy of dum" class="firstbox">
 
           <div class="maincard">
@@ -143,10 +124,10 @@
               </div>
             </div>
 
-            <div *ngIf="dummy.card_number.charAt(0) == '4'">
+            <div *ngIf="dummy?.card_number?.charAt(0) == '4'">
               <img class="logo" [src]=visaLogo>
             </div>
-            <div *ngIf="dummy.card_number.charAt(0) == '5'">
+            <div *ngIf="dummy?.card_number?.charAt(0) == '5'">
               <img class="logo" [src]=masterCardLogo>
             </div>
 
@@ -159,7 +140,7 @@
 <!--        <span> Delete<mat-icon >delete</mat-icon></span>-->
 <!--          </button>-->
 
-      <button mat-raised-button class="delete" color="warn">Delete</button>
+      <button mat-raised-button class="delete" (click)="deleteCard(dummy)" color="warn">Delete</button>
       </table>
 
 

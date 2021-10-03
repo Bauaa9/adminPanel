@@ -27,6 +27,9 @@ export class ApiService {
 
       case "post":
         return this.http.post(this.baseUrl+url,body,{headers:headers});
+
+      case "delete":
+        return this.http.delete(this.baseUrl+url,{headers:headers});
     }
   }
 

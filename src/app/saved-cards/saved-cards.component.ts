@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { images } from 'src/environments/environment';
 import {ApiService} from '../../services/api.service';
 import {Card} from '../../Model/Card';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-saved-cards',
@@ -29,9 +30,8 @@ export class SavedCardsComponent implements OnInit {
   formBuilder: FormBuilder;
   n: number;
   dum:any;
-  spinner = false;
 
-constructor(private router: Router, private service:ApiService) {
+constructor(private router: Router, private service:ApiService,private spinner:NgxSpinnerService) {
     this.card = new Card();
     this.formBuilder = new FormBuilder();
   }
@@ -129,16 +129,14 @@ mod10 = (num: string): boolean => {
   // tslint:disable-next-line: typedef
 addCard() {
     this.click = false;
-    this.card.customerId = this.dum.length + 1;
-    this.card.cardNum = this.card.cardNum.replace(/\s/g, '');
-    this.service.api("post",{},"/new-card",true)
+    this.card.customer_id = this.dum.length + 1;
+    this.card.card_number = this.card.card_number.replace(/\s/g, '');
+  this.spinner.show();
+    this.service.api("post",this.card,"/new-card",true)
     .subscribe(
       (resp) => {
         console.log(resp);
-        this.spinner = true;
-        setTimeout(() => {
-          this.spinner = false;
-        }, 1000);
+          this.spinner.hide();
         this.displayCard();
       },
       (err) => {
@@ -147,24 +145,25 @@ addCard() {
     );
     this.finalLogoUrl = '';
     this.myForm.reset();
-    this.spinner = false;
     console.log(this.myForm);
     console.log(this.card);
   }
 
   // tslint:disable-next-line: typedef
 displayCard() {
-  this.service.api("post",{},"/display-cards",true)
+  this.spinner.show();
 
+  this.service.api("post",{},"/display-cards",true)
   .subscribe(
       (resp:Card[]) => {
         console.log(resp);
         this.dum = resp['allCards'];
         this.convert();
-        console.log(this.dum);
+        this.spinner.hide();
       },
       (err) => {
         console.log(err);
+        this.spinner.hide();
       }
     );
     console.log(this.dum);
@@ -173,33 +172,33 @@ displayCard() {
   // tslint:disable-next-line: typedef
 convert() {
     for (const dummycard of this.dum){
-      console.log(dummycard.card_number);
-      const num = dummycard.card_number;
-      dummycard.card_number = num.slice(0, 4) + '  '
-      + num.slice(4, 8).replace(/\d/g, 'x') + '  '
-      + num.slice(8, 12).replace(/\d/g, 'x') + '  '
-      + num.slice(-4);
-      console.log(dummycard.card_number);
+      console.log(dummycard?.card_number);
+      const num = dummycard?.card_number;
+      dummycard.card_number = num?.slice(0, 4) + '  '
+      + num?.slice(4, 8).replace(/\d/g, 'x') + '  '
+      + num?.slice(8, 12).replace(/\d/g, 'x') + '  '
+      + num?.slice(-4);
+      console.log(dummycard?.card_number);
       dummycard.cvv = dummycard.cvv.slice(0, 3).replace(/\d/g, '*');
-      this.logo(dummycard.card_number);
+      this.logo(dummycard?.card_number);
     }
   }
 
   // tslint:disable-next-line: typedef
-  deleteCard(del: Card) {
-    console.log(del.cardId);
-    this.service.api("delete",{},"/delete-card?id="+del.cardId,true)
+  deleteCard(del: any) {
+    console.log(del.card_id);
+    console.log(typeof del.card_id)
+    this.spinner.show();
+
+    this.service.api("delete",{},"/delete-card/"+del.card_id,true)
     .subscribe(
       (resp) => {
         console.log(resp);
-        this.spinner = true;
-        setTimeout(() => {
-          this.spinner = false;
-        }, 1000);
-
+        this.spinner.hide();
         this.displayCard();
       },
       (err) => {
+        this.spinner.hide();
         console.log(err);
       }
     );
