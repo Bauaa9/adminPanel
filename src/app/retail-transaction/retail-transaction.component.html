@@ -14,30 +14,28 @@
 
 
 
-  <div style="width: 80%;margin-left: 20%; margin-top: 3%;">
+  <div style="margin-left: 20%; margin-right: 20px;margin-top: 3%;">
     <table class="table table-striped">
       <thead>
         <tr class=" bg-dark" style="color: orangered;">
+          <th scope="col" class="border border-white">Sr.no</th>
           <th scope="col" class="border border-white">Txn Dt/Time</th>
           <th scope="col" class="border border-white">Merchant Name</th>
-          <th scope="col" class="border border-white">Order Id</th>
-          <th scope="col" class="border border-white">Payment Id</th>
           <th scope="col" class="border border-white">Amt(Rs)</th>
-          <th scope="col" class="border border-white">Payment Details</th>
+<!--          <th scope="col" class="border border-white">Payment Details</th>-->
           <th scope="col" class="border border-white">Payment Method</th>
           <th scope="col" class="border border-white">Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of totalTransaction" class="text-white border border-white">
-          <th class="border border-white">{{data.txnDate}}</th>
-          <td class="border border-white">{{data.merchantName}}</td>
-          <td class="border border-white">{{data.orderID}}</td>
-          <td class="border border-white">{{data.paymentID}}</td>
-          <td class="border border-white">{{data.amount}}</td>
-          <td class="border border-white">{{data.paymentDetail}}</td>
-          <td class="border border-white">{{data.paymentMethod}}</td>
-          <td class="border border-white">{{data.status}}</td>
+        <tr *ngFor="let data of responseData;let indexOfelement=index;" class="text-dark border border-dark">
+          <td class="border border-dark">{{indexOfelement+1}}</td>
+          <th class="border border-dark">{{this.datePipe.transform(data.date_time,"dd MMM yyyy") }}</th>
+          <td class="border border-dark">{{data.merchant_name}}</td>
+          <td class="border border-dark">{{data.expenditure}}</td>
+<!--          <td class="border border-dark">{{data.paymentDetail}}</td>-->
+          <td class="border border-dark">{{data.payment_method}}</td>
+          <td class="border border-dark">{{data.status}}</td>
 
         </tr>
 

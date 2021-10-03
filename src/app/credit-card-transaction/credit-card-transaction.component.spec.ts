@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { RetailTransactionComponent } from './Retail-Transaction.component';
+import { CreditCardTransactionComponent } from './credit-card-transaction.component';
 
-describe('RetailTransactionComponent', () => {
-  let component: RetailTransactionComponent;
-  let fixture: ComponentFixture<RetailTransactionComponent>;
+describe('CreditCardTransactionComponent', () => {
+  let component: CreditCardTransactionComponent;
+  let fixture: ComponentFixture<CreditCardTransactionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RetailTransactionComponent ]
+      declarations: [ CreditCardTransactionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RetailTransactionComponent);
+    fixture = TestBed.createComponent(CreditCardTransactionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

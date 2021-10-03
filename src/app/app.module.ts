@@ -16,8 +16,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {RetailTransactionComponent} from './Retail-Transaction/Retail-Transaction.component';
-import {CreditCardTransactionComponent} from './creditCard-Transaction/creditCard-Transaction.component';
+import {RetailTransactionComponent} from './retail-transaction/retail-transaction.component';
+import {CreditCardTransactionComponent} from './credit-card-transaction/credit-card-transaction.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SaveAddressComponent} from './save-address/save-address.component';
 import {ViewStatementComponent} from './view-statement/view-statement.component';
@@ -35,6 +35,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {InputMaskAngularModule} from 'input-mask-angular';
 import {SavedDetailsComponent} from './saved-details/saved-details.component';
 import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog
     InputMaskAngularModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

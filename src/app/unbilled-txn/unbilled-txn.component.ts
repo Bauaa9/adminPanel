@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/Model/customer';
+import { Customer } from 'src/models/customer';
 import {ApiService} from '../../services/api.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {DatePipe} from '@angular/common';
 @Component({
   selector: 'app-unbilled-txn',
   templateUrl: './unbilled-txn.component.html',
@@ -11,7 +12,7 @@ export class UnbilledTxnComponent implements OnInit {
   cust: Customer[];
   status="unbilled";
   responseData:any=[];
-  constructor(private apiService:ApiService,private spinner:NgxSpinnerService) { }
+  constructor(private apiService:ApiService,private spinner:NgxSpinnerService,private datePipe: DatePipe) { }
 
 
   ngOnInit(): void {

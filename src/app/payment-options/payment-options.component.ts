@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { images } from 'src/environments/environment';
-import {User} from '../../Model/User';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-payment-options',

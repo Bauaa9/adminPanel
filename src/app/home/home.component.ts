@@ -15,13 +15,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+  // openDialog() {
+  //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result: ${result}`);
+  //   });
+  // }
 
   // tslint:disable-next-line:typedef
   tempFunction() {
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
      username:'rohit',
       password:'password'
     };
-    this.service.api("post",body,'http://localhost:8083/authenticate').subscribe((response)=>{
+    this.service.api("post",body,'/authenticate').subscribe((response)=>{
       console.log(response)
     })
   }

@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { images } from 'src/environments/environment';
 import {ApiService} from '../../services/api.service';
-import {Card} from '../../Model/Card';
+import {Card} from '../../models/Card';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({

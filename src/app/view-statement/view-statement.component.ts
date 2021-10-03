@@ -1,6 +1,6 @@
 // import { UnbilledService } from './../../Service/unbilled.service';
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/Model/customer';
+import { Customer } from 'src/models/customer';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

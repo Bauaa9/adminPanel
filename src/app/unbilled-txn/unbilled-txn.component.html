@@ -40,6 +40,7 @@
   <table class="table table-striped">
     <thead>
       <tr class=" bg-dark" style="color: rgb(247, 242, 241);">
+        <th scope="col" class="border border-success">Sr.no</th>
         <th scope="col" class="border border-success">Date</th>
         <th scope="col" class="border border-success">Place</th>
         <th scope="col" class="border border-success">Amount</th>
@@ -48,11 +49,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let transactionDetails of responseData['unbilledTxn'];let indexOfelement=index;" class="text-dark border border-dark">
-        <th class="border border-dark">{{indexOfelement}}</th>
-        <td class="border border-dark">{{transactionDetails.date_time}}</td>
+        <th class="border border-dark">{{indexOfelement+1}}</th>
+        <td class="border border-dark">{{this.datePipe.transform(transactionDetails.date_time,"dd MMM yyyy")}}</td>
+        <td class="border border-dark">{{transactionDetails.merchant_name}}</td>
         <td class="border border-dark">Rs.{{transactionDetails.expenditure}}</td>
-
-
       </tr>
 
     </tbody>

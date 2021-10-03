@@ -4,8 +4,8 @@ import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-creditCard-Transaction',
-  templateUrl: './creditCard-Transaction.component.html',
-  styleUrls: ['./creditCard-Transaction.component.css']
+  templateUrl: './credit-card-transaction.component.html',
+  styleUrls: ['./credit-card-transaction.component.css']
 })
 export class CreditCardTransactionComponent implements OnInit {
 
