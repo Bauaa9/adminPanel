@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ApiService} from '../../services/api.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,17 @@ import {ApiService} from '../../services/api.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service:ApiService) {}
+  constructor(private service:ApiService,public dialog: MatDialog) {}
 
   ngOnInit(): void {
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   // tslint:disable-next-line:typedef
@@ -25,3 +34,10 @@ export class HomeComponent implements OnInit {
     })
   }
 }
+
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  template: '<h2>ornlasdnflasdfsadf</h2>',
+})
+export class DialogContentExampleDialog {}

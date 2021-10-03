@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import {DialogContentExampleDialog, HomeComponent} from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -34,6 +34,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {InputMaskAngularModule} from 'input-mask-angular';
 import {SavedDetailsComponent} from './saved-details/saved-details.component';
+import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {SavedDetailsComponent} from './saved-details/saved-details.component';
     PaymentOptionsComponent,
     OtpComponent,
     SavedCardsComponent,
-    SavedDetailsComponent
+    SavedDetailsComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import {SavedDetailsComponent} from './saved-details/saved-details.component';
     MatIconModule,
     MatStepperModule,
     MatSelectModule,
-    InputMaskAngularModule
+    InputMaskAngularModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
