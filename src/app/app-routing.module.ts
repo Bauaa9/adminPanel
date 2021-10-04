@@ -16,7 +16,7 @@ import {OtpComponent} from './otp/otp.component';
 import {AddAddressComponent} from './add-address/add-address.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '',  pathMatch: 'full',component: HomeComponent  },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   {path: 'retail-transaction', component: RetailTransactionComponent},
