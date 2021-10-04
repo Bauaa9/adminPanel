@@ -1,34 +1,80 @@
-<div style="width: 100%; height: 100%; background-color: white; padding-top: 20px;">
-<div class="col-md-6 offset-md-3 " style="border: 1px solid black;background-color: blue;">
-<h2 style="color: white">Add Address</h2>
-<form (ngSubmit)="onSubmit()" class="p-4">
+<!--<div style="width: 100%; height: 100%; background-color: white; padding-top: 20px;">-->
+<!--<div class="col-md-6 offset-md-3 " style="border: 1px solid black;background-color: blue;">-->
+<!--<h2 style="color: white">Add Address</h2>-->
+<!--<form (ngSubmit)="onSubmit()" class="p-4">-->
 
-  <div class="form-group">
-    <label>Address line 1</label>
-    <input type="text" class="form-control" id="adrs1"
-           [(ngModel)]="address.line1" name="adrs_line1">
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label>Address line 1</label>-->
+<!--    <input type="text" class="form-control" id="adrs1"-->
+<!--           [(ngModel)]="address.line1" name="adrs_line1">-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <label>Address line 2 </label>
-    <input type="text" class="form-control" id="adrs2"
-           [(ngModel)]="address.line2" name="adrs_line2">
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label>Address line 2 </label>-->
+<!--    <input type="text" class="form-control" id="adrs2"-->
+<!--           [(ngModel)]="address.line2" name="adrs_line2">-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <label>Pincode </label>
-    <input type="text" class="form-control" id="pincode"
-      [(ngModel)]="address.pincode" name="pincode">
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label>Pincode </label>-->
+<!--    <input type="text" class="form-control" id="pincode"-->
+<!--      [(ngModel)]="address.pincode" name="pincode">-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <label>State </label>
-    <input type="text" class="form-control" id="state"
-           [(ngModel)]="address.city" name="state">
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label>State </label>-->
+<!--    <input type="text" class="form-control" id="state"-->
+<!--           [(ngModel)]="address.city" name="state">-->
+<!--  </div>-->
 
-  <button class="btn btn-success" type="submit">Submit</button>
+<!--  <button class="btn btn-success" type="submit">Submit</button>-->
 
-</form>
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+
+
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Address Form</title>
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="container">
+<h3>Add address</h3>
+<div class="row">
+<!--  <form class="col s12">-->
+    <div class="row">
+      <div class="input-field col s12 m12 l6">
+        <input [(ngModel)]="address.line1"  placeholder="Address Line 1"   id="first_name" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a first Name between 3-25 characters" length="25">
+      </div>
+      <div class="input-field col s12 m12 l6">
+        <input [(ngModel)]="address.line2" id="last_name" placeholder="Address Line 2" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a last Name between 3-25 characters" length="25">
+      </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m12 l6">
+        <input [(ngModel)]="address.pincode" id="zip-code" placeholder="Pin code" type="text" required title="Please enter a valid post code
+(e.g., 12345)" pattern="^\d{5}(-\d{4})?$" class="validate">
+      </div>
+      <div class="input-field col s12 m12 l6">
+        <input id="town" [(ngModel)]="address.city" type="text" placeholder="City" required class="validate" title="Please enter a valid City/Town" pattern="^\S.+">
+      </div>
+    </div>
+
+    <button class="waves-effect waves-light btn right" style="width: 200px;margin-left: 70%" type="submit">Submit</button>
+<!--  </form>-->
 </div>
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+</body>
+
+</html>

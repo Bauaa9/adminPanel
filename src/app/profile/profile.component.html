@@ -1,46 +1,58 @@
-<div class="fixed-top ml-auto" style="width: 1158px; margin-top: 60px;">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light ml-auto " >
+<!-- <div class="fixed-top ml-auto" style="width: 1158px; margin-top: 60px; ">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid ">
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ml-5">
-          <a class="nav-link " aria-current="page" routerLink="/profile">User Profile</a>
+        <div class="navbar-nav">
+          <a class="nav-link " aria-current="page" href="profile">User Profile</a>
 
         </div>
       </div>
     </div>
-  </nav>
+  </nav>-->
+  <head>
 
-<div>
-  <div>
-    <label class="mt-4 " style="margin-left: 100px;">Initial*</label>  <label class="float-right mt-4 " style="margin-right: 200px;">Address Line1*</label><br>
-    <input type="text" style="margin-left: 100px;">                         <input type="text" class="float-right"  style="margin-right: 200px;"><br>
-  </div>
-
-
-
-  <div>
-  <label class="mt-4 " style="margin-left: 100px;">First Name*</label>     <label class="float-right mt-4 " style="margin-right: 200px;">Address Line2*</label><br>
-  <input type="text" style="margin-left: 100px;">                              <input type="text" class="float-right"  style="margin-right: 200px;"><br>
-</div>
-
-<div>
-  <label class="mt-4" style="margin-left: 100px;">Last Name*</label>                               <label class="float-right mt-4 " style="margin-right: 200px;">Pin Code*</label><br>
-  <input type="text" style="margin-left: 100px;">                           <input type="text" class="float-right"  style="margin-right: 200px;"><br>
-</div>
-
-<div>
-  <label class="mt-4" style="margin-left: 100px;">Email ID*</label>                                 <label class="float-right mt-4 " style="margin-right: 200px;">State*</label><br>
-  <input type="text" style="margin-left: 100px;">                            <input type="text" class="float-right"  style="margin-right: 200px;"><br>
-</div>
-
-<div>
-  <label class="mt-4" style="margin-left: 100px;">Phone No*</label>                                <label class="float-right mt-4 " style="margin-right: 200px;">Country*</label><br>
-  <input type="text" style="margin-left: 100px;">                              <input type="text" class="float-right"  style="margin-right: 200px;"><br>
-</div>
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
 
 
+   <img src="assets/profile_pic.png"/>
 
-</div>
+
+ <body class="container">
+
+    <div class="row">
+<!--      <form class="col s12">-->
+
+        <div class="row">
+          <div class="input-field col s12 m12 l6">
+            <input id="first_name" type="text" [(ngModel)]="userDetails.firstName" placeholder="First Name" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a first Name between 3-25 characters" length="25">
+          </div>
+
+          <div class="input-field col s12 m12 l6">
+            <input id="lastname" [(ngModel)]="userDetails.lastName" placeholder="Last Name" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a last Name between 3-25 characters" length="25">
+          </div>
+        <div class="row">
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">email</i>
+            <input id="email" placeholder="Email" type="email" [(ngModel)]="userDetails.email" required class="validate" title="Please enter a valid email">
+          </div>
+          <div class="input-field col s12 m12 l6">
+            <i class="material-icons prefix">contact_phone</i>
+            <input id="phone-number" type="tel" placeholder="Phone Number" [(ngModel)]="userDetails.phoneNo" required title="Please enter a valid phone number (e.g., (123) 456-7890)" pattern="^[0-9]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" class="validate">
+          </div>
+        </div>
+        <button class="waves-effect waves-light btn right" (click)="updateProfile()"  type="submit">save</button>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 
 
-</div>
+
+<!--</form>-->
+    </div>
+
+
