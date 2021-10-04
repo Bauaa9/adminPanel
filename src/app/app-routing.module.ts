@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'creditCard-transaction', component: CreditCardTransactionComponent},
   {path: 'cust-Transaction', component: CustTransactionComponent},
   { path: 'details', component: SavedCardsComponent},
-  {path: 'save-adresses', component: SaveAddressComponent},
+  {path: 'save-addresses', component: SaveAddressComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'view-stmt', component: ViewStatementComponent},
   {path: 'unbilled_txn', component: UnbilledTxnComponent},

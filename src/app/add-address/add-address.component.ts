@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {Address} from '../../models/Address';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-add-address',
@@ -12,7 +13,7 @@ export class AddAddressComponent implements OnInit {
 
   address: Address=new Address();
 
-  constructor(private service: ApiService, private router :Router) { }
+  constructor(private service: ApiService, private router :Router,private spinner:NgxSpinnerService) { }
 
   ngOnInit():void {
   }
@@ -20,23 +21,19 @@ export class AddAddressComponent implements OnInit {
   onSubmit()
   {
     console.log(this.address);
-    this.addAddress();
-
-  }
-
-  addAddress()
-  {
+    this.spinner.show().then(r => console.log('loading'));
     this.service.api("post",this.address,"/add-address",true).subscribe(data=>{
-      console.log(data);
-      this.goToAddressList();
-    },
-    error=> console.log(error));
-  }
+        console.log(data);
+        this.spinner.hide().then(r => console.log('stopped'));
+        this.goToAddressList();
+      },
+      error=> console.log(error));
 
+  }
 
   goToAddressList()
   {
-    this.router.navigate(['/save-adresses']);
+    this.router.navigate(['/save-addresses']);
   }
 
 

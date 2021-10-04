@@ -6,13 +6,13 @@
   <div class="form-group">
     <label>Address line 1</label>
     <input type="text" class="form-control" id="adrs1"
-      [(ngModel)]="address.adrs_line1" name="adrs_line1">
+           [(ngModel)]="address.line1" name="adrs_line1">
   </div>
 
   <div class="form-group">
     <label>Address line 2 </label>
     <input type="text" class="form-control" id="adrs2"
-      [(ngModel)]="address.adrs_line2" name="adrs_line2">
+           [(ngModel)]="address.line2" name="adrs_line2">
   </div>
 
   <div class="form-group">
@@ -24,13 +24,7 @@
   <div class="form-group">
     <label>State </label>
     <input type="text" class="form-control" id="state"
-      [(ngModel)]="address.state" name="state">
-  </div>
-
-  <div class="form-group">
-    <label>Country </label>
-    <input type="text" class="form-control" id="country"
-      [(ngModel)]="address.country" name="country">
+           [(ngModel)]="address.city" name="state">
   </div>
 
   <button class="btn btn-success" type="submit">Submit</button>

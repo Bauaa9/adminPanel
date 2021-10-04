@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ApiService} from '../../services/api.service';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {SignInComponent} from '../sign-in/sign-in.component';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,20 @@ import {MatDialog} from '@angular/material/dialog';
 export class HomeComponent implements OnInit {
 
   constructor(private service:ApiService,public dialog: MatDialog) {}
+  title = 'admin-panel-layout';
+  sideBarOpen = true;
 
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
+
+  openDialog() {
+    const dialogConfig=new MatDialogConfig();
+    // dialogConfig.disableClose=true;
+    //dialogConfig.width="50%";
+    //dialogConfig.height="50%";
+    this.dialog.open(SignInComponent);
+  }
   ngOnInit(): void {
   }
 

@@ -37,6 +37,7 @@ import {SavedDetailsComponent} from './saved-details/saved-details.component';
 import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {DatePipe} from '@angular/common';
 import {AddAddressComponent} from './add-address/add-address.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {AddAddressComponent} from './add-address/add-address.component';
     SavedCardsComponent,
     SavedDetailsComponent,
     DialogContentExampleDialog,
-    AddAddressComponent
+    AddAddressComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -85,5 +87,7 @@ import {AddAddressComponent} from './add-address/add-address.component';
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
+  // entryComponents:[SidenavComponent]
+
 })
 export class AppModule {}
