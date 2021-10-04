@@ -36,6 +36,7 @@ import {InputMaskAngularModule} from 'input-mask-angular';
 import {SavedDetailsComponent} from './saved-details/saved-details.component';
 import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {DatePipe} from '@angular/common';
+import {AddAddressComponent} from './add-address/add-address.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {DatePipe} from '@angular/common';
     OtpComponent,
     SavedCardsComponent,
     SavedDetailsComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    AddAddressComponent
   ],
   imports: [
     BrowserModule,

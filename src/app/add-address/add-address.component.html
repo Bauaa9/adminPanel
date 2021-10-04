@@ -1,0 +1,40 @@
+<div style="width: 100%; height: 100%; background-color: white; padding-top: 20px;">
+<div class="col-md-6 offset-md-3 " style="border: 1px solid black;background-color: blue;">
+<h2 style="color: white">Add Address</h2>
+<form (ngSubmit)="onSubmit()" class="p-4">
+
+  <div class="form-group">
+    <label>Address line 1</label>
+    <input type="text" class="form-control" id="adrs1"
+      [(ngModel)]="address.adrs_line1" name="adrs_line1">
+  </div>
+
+  <div class="form-group">
+    <label>Address line 2 </label>
+    <input type="text" class="form-control" id="adrs2"
+      [(ngModel)]="address.adrs_line2" name="adrs_line2">
+  </div>
+
+  <div class="form-group">
+    <label>Pincode </label>
+    <input type="text" class="form-control" id="pincode"
+      [(ngModel)]="address.pincode" name="pincode">
+  </div>
+
+  <div class="form-group">
+    <label>State </label>
+    <input type="text" class="form-control" id="state"
+      [(ngModel)]="address.state" name="state">
+  </div>
+
+  <div class="form-group">
+    <label>Country </label>
+    <input type="text" class="form-control" id="country"
+      [(ngModel)]="address.country" name="country">
+  </div>
+
+  <button class="btn btn-success" type="submit">Submit</button>
+
+</form>
+</div>
+</div>

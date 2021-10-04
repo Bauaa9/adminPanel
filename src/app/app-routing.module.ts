@@ -13,6 +13,7 @@ import {LastStatementComponent} from './last-statement/last-statement.component'
 import {SavedCardsComponent} from './saved-cards/saved-cards.component';
 import {PaymentOptionsComponent} from './payment-options/payment-options.component';
 import {OtpComponent} from './otp/otp.component';
+import {AddAddressComponent} from './add-address/add-address.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'last-statement', component:LastStatementComponent},
   { path: 'payment', component: PaymentOptionsComponent},
   { path: 'otp', component: OtpComponent},
+  {path: 'add-address', component: AddAddressComponent},
 ];
 
 @NgModule({
