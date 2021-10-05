@@ -40,6 +40,7 @@ import {AddAddressComponent} from './add-address/add-address.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import {AuthGuard} from '../services/auth.guard';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import { DisplayOtpExpiryComponent } from './display-otp-expiry/display-otp-expiry.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
     SavedDetailsComponent,
     DialogContentExampleDialog,
     AddAddressComponent,
-    SignInComponent
+    SignInComponent,
+    DisplayOtpExpiryComponent,
   ],
   imports: [
     BrowserModule,

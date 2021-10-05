@@ -7,6 +7,8 @@ import {Observable, Subject} from 'rxjs';
 export class SubscribeService {
   isLoggedIn=new Subject<any>();
   showViewStatementTabs= new Subject<boolean>();
+  cvv:any;
+  expiryDate:any;
 
   constructor() {
   }
