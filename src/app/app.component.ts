@@ -18,6 +18,8 @@ export class AppComponent {
       if(value==true){
         this.isLoggedIn=true;
         console.log('it is true')
+      }else{
+        this.isLoggedIn=false;
       }
     })
   }
