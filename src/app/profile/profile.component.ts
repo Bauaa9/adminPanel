@@ -10,7 +10,7 @@ import {ModelUserDetails} from '../../models/ModelUserDetails';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  showAlertMessage=false;
   userDetails:ModelUserDetails=new ModelUserDetails();
   constructor(private service: ApiService,private spinner:NgxSpinnerService) { }
 
@@ -33,9 +33,13 @@ export class ProfileComponent implements OnInit {
     this.spinner.show().then(r => console.log('loading'));
     this.service.api("post",this.userDetails,"/update-profile",true).subscribe(data=>{
         console.log(data);
+        this.showAlertMessage=true;
         this.spinner.hide().then(r => console.log('stopped'));
       },
       error=> console.log(error));
   }
 
+  closeAlert() {
+    this.showAlertMessage=false;
+  }
 }

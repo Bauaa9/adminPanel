@@ -10,12 +10,15 @@
     </div>
   </nav>-->
   <head>
-
-    <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
+    <meta name="viewport" content="initial-scale=1">
 
+  </head>
+<div *ngIf="showAlertMessage" class="alert alert-success alert-dismissible" role="alert" >
+  <button type="button" (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Success!</strong> Your profile is update successfully
+</div>
 
    <img src="assets/profile_pic.png"/>
 
