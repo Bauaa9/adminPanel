@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
   logOut() {
     localStorage.setItem("username" , null);
     localStorage.setItem("userToken" , null);
-    localStorage.setItem("isLoggedIn" , null);
     this.subscribeService.isLoggedIn.next(false);
     this.router.navigateByUrl('/home');
   }

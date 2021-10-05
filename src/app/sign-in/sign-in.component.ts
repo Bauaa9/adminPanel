@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
       localStorage.setItem("username" , this.user.username);
       localStorage.setItem("userToken" , data['token']);
       this.spinner.hide().then(r => console.log('stopped'));
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/cust-transaction');
     })
   }
 }
