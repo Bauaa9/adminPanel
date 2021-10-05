@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {Subject} from 'rxjs';
+import {SubscribeService} from '../../services/subscribe.service';
 
 @Component({
   selector: 'app-creditCard-Transaction',
@@ -11,7 +13,12 @@ export class CreditCardTransactionComponent implements OnInit {
 
   responseData:any;
   closeResult: string;
-  constructor(private apiService:ApiService,private spinner:NgxSpinnerService) { }
+   showStatementTabs=false;
+  constructor(private apiService:ApiService,private spinner:NgxSpinnerService,private subscriptionService:SubscribeService) {
+  this.subscriptionService.showViewStatementTabs.subscribe(value => {
+    this.showStatementTabs = value;
+  })
+  }
 
   ngOnInit() {
     this.spinner.show().then(r => console.log('loading'));
@@ -21,6 +28,8 @@ export class CreditCardTransactionComponent implements OnInit {
       this.spinner.hide().then(r => console.log('stopped'));
     })
   }
+
+
 
   open(content) {
     // this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -39,4 +48,9 @@ export class CreditCardTransactionComponent implements OnInit {
     //   return `with: ${reason}`;
     // }
     return 'sdf';
-  }}
+  }
+
+  openStatement() {
+    this.subscriptionService.showViewStatementTabs.next(true);
+  }
+}

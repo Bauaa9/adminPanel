@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   {path: 'retail-transaction', component: RetailTransactionComponent},
   {path: 'creditCard-transaction', component: CreditCardTransactionComponent},
-  {path: 'cust-Transaction', component: CustTransactionComponent},
+  {path: 'cust-transaction', component: CustTransactionComponent},
   { path: 'details', component: SavedCardsComponent},
   {path: 'save-addresses', component: SaveAddressComponent},
   {path: 'profile', component: ProfileComponent},

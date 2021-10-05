@@ -1,23 +1,11 @@
-<div  style="width: 100%; height: 100%; margin-top: 5px; background-color: white;">
-  <nav
-    class="navbar navbar-expand-lg navbar-light bg-light"
-    style="width: 100%"
-  >
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav" style="margin-left: 80px">
-          <a class="nav-link" aria-current="page" routerLink="/retail-transaction"
-          >Retail Transaction</a
-          >
-          <a class="nav-link ml-5" routerLink="/creditCard-transaction"
-          >Credit Card Transaction</a
-          >
-        </div>
-      </div>
-    </div>
-  </nav>
-<!--  <mat-divider></mat-divider>-->
-  <div class="mt-1 " style="width: 100%; ">
+
+<mat-tab-group *ngIf=showStatementTabs>
+  <mat-tab label="Unbilled Txn"> <app-unbilled-txn></app-unbilled-txn> </mat-tab>
+  <mat-tab label="Last Statement"> <app-last-statement></app-last-statement></mat-tab>
+</mat-tab-group>
+
+
+  <div *ngIf=!showStatementTabs class="mt-1 " style="width: 100%; ">
     <div >
       <div class="float-right mr-3 mt-1">
   <label class="font-weight-bold">Last Statement <label class="text-warning">: {{responseData?.cardlimit?.laststatementdate}}</label></label>
@@ -27,7 +15,7 @@
 
 
 
-      <div class="d-flex justify-content-center container text-white " style="margin-left: 50px;">
+      <div class="d-flex justify-content-center container text-white ">
         <div class="card p-2 px-3 py-3  " style="background-color: rgb(14, 14, 63); width: 28%;">
           <div class="d-flex justify-content-between align-items-center">
             <img
@@ -53,23 +41,7 @@
           </div>
         </div>
       </div></div>
-
-
-
-
-
-
-    <!--      <div class="mx-auto rounded mt-2" style="width: 250px; border: 1px solid black; background-color:rgb(161, 161, 35); ">-->
-<!--  <div class="p-3">-->
-<!--    <label>Active</label>-->
-<!--    <label class="ml-3">VISA ICICI Coral Contactless</label>-->
-<!--    <label class="font-weight-bold ml-3">{{responseData?.cardetails?.card_number}}</label>-->
-<!--    <label>{{responseData?.cardetails?.card_holder_name}}</label>-->
-<!--    <button type="button" class="btn btn-success ml-5" (click)="open(content)" >View CVV/Expiry</button>-->
-<!--  </div>-->
-<!--</div>-->
-
-    <div class=" mt-5" style="width: 800px; background-color: whitesmoke;margin-left: 250px;">
+    <div class=" mt-5" style="width: 800px; background-color: whitesmoke;margin-left: 150px;">
 
 <table class="table table-bordered ">
   <tbody>
@@ -90,11 +62,9 @@
     </div>
 
 <div class="p-2 text-center "  style="margin-left:50px">
-<button type="button" class="btn btn-success w-22" routerLink="/unbilled_txn" >View Statement</button>
+<button type="button" class="btn btn-success w-22" (click)="openStatement()"  >View Statement</button>
 </div>
 </div>
-</div>
-<!--pop up-->
 
 <ng-template #content let-modal  style="width:10%">
 
