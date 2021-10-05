@@ -14,23 +14,24 @@ import {SavedCardsComponent} from './saved-cards/saved-cards.component';
 import {PaymentOptionsComponent} from './payment-options/payment-options.component';
 import {OtpComponent} from './otp/otp.component';
 import {AddAddressComponent} from './add-address/add-address.component';
+import {AuthGuard} from '../services/auth.guard';
 
 const routes: Routes = [
   { path: '',  pathMatch: 'full',component: HomeComponent  },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  {path: 'retail-transaction', component: RetailTransactionComponent},
-  {path: 'creditCard-transaction', component: CreditCardTransactionComponent},
-  {path: 'cust-transaction', component: CustTransactionComponent},
-  { path: 'details', component: SavedCardsComponent},
-  {path: 'save-addresses', component: SaveAddressComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'view-stmt', component: ViewStatementComponent},
-  {path: 'unbilled_txn', component: UnbilledTxnComponent},
-  {path: 'last-statement', component:LastStatementComponent},
-  { path: 'payment', component: PaymentOptionsComponent},
-  { path: 'otp', component: OtpComponent},
-  {path: 'add-address', component: AddAddressComponent},
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard]  },
+  {path: 'retail-transaction', component: RetailTransactionComponent,canActivate: [AuthGuard]},
+  {path: 'creditCard-transaction', component: CreditCardTransactionComponent,canActivate: [AuthGuard] },
+  {path: 'cust-transaction', component: CustTransactionComponent,canActivate: [AuthGuard]},
+  { path: 'details', component: SavedCardsComponent,canActivate: [AuthGuard]},
+  {path: 'save-addresses', component: SaveAddressComponent,canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent,canActivate: [AuthGuard]},
+  {path: 'view-stmt', component: ViewStatementComponent,canActivate: [AuthGuard]},
+  {path: 'unbilled_txn', component: UnbilledTxnComponent,canActivate: [AuthGuard]},
+  {path: 'last-statement', component:LastStatementComponent,canActivate: [AuthGuard]},
+  { path: 'payment', component: PaymentOptionsComponent,canActivate: [AuthGuard]},
+  { path: 'otp', component: OtpComponent,canActivate: [AuthGuard]},
+  {path: 'add-address', component: AddAddressComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({

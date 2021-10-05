@@ -31,8 +31,8 @@ export class SignInComponent implements OnInit {
       console.log(data);
       this.dialogRef.close();
       this.subscribeService.isLoggedIn.next(true)
-      sessionStorage.setItem("username" , this.user.username);
-      sessionStorage.setItem("userToken" , data['token']);
+      localStorage.setItem("username" , this.user.username);
+      localStorage.setItem("userToken" , data['token']);
       this.spinner.hide().then(r => console.log('stopped'));
       this.router.navigateByUrl('/dashboard');
     })

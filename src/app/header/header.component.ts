@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router,private subscribeService:SubscribeService) {}
 
   ngOnInit(): void {
-    this.username=sessionStorage.getItem('username');
+    this.username=localStorage.getItem('username');
   }
 
   toggleSidebar() {
@@ -21,9 +21,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    sessionStorage.setItem("username" , null);
-    sessionStorage.setItem("userToken" , null);
-    sessionStorage.setItem("isLoggedIn" , null);
+    localStorage.setItem("username" , null);
+    localStorage.setItem("userToken" , null);
+    localStorage.setItem("isLoggedIn" , null);
     this.subscribeService.isLoggedIn.next(false);
     this.router.navigateByUrl('/home');
   }

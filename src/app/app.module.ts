@@ -38,6 +38,8 @@ import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog
 import {DatePipe} from '@angular/common';
 import {AddAddressComponent} from './add-address/add-address.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import {AuthGuard} from '../services/auth.guard';
+import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     InputMaskAngularModule,
     MatDialogModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,AuthGuard,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent],
   // entryComponents:[SidenavComponent]
 
