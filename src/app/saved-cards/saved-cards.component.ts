@@ -5,6 +5,7 @@ import { images } from 'src/environments/environment';
 import {ApiService} from '../../services/api.service';
 import {Card} from '../../models/Card';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-saved-cards',
@@ -19,6 +20,7 @@ export class SavedCardsComponent implements OnInit {
   visaUrl = images.visaUrl;
   masterCardUrl = images.masterCardUrl;
   finalLogoUrl = '';
+  scLogo=images.scLogo;
   //finalSingleUrl = '';
   click = false;
   myForm: any;
@@ -31,7 +33,7 @@ export class SavedCardsComponent implements OnInit {
   n: number;
   dum:any;
 
-constructor(private router: Router, private service:ApiService,private spinner:NgxSpinnerService) {
+constructor(private router: Router, private service:ApiService,private spinner:NgxSpinnerService,private datePipe:DatePipe) {
     this.card = new Card();
     this.formBuilder = new FormBuilder();
   }

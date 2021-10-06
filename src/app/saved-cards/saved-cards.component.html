@@ -114,6 +114,20 @@
     <table *ngFor="let dummy of dum" class="firstbox">
 
           <div class="maincard">
+            <div class="type">
+              {{dummy.card_type}} CARD
+            </div>
+            <span>
+            <div class="set0">
+<!--              <div class="bankName">-->
+                Standard Chartered
+<!--              </div>-->
+<!--              <div class="float-child">-->
+                <img class="sc" [src]=scLogo>
+<!--              </div>-->
+            </div>
+</span>
+
             <div class="set1">
               <div class="float-child">
                 <img class="chip" [src]=chipLogo>
@@ -125,7 +139,7 @@
 
             <div class="set2">
               <div class="expDate">
-                VALID TILL - {{dummy.expiry_date}}
+                VALID TILL - {{this.datePipe.transform(dummy.expiry_date,"MMM yyyy") }}
               </div>
             </div>
 
@@ -144,7 +158,7 @@
 <!--          <button mat-icon-button class="delete" color="warn" (click)="deleteCard(dummy)">-->
 <!--        <span> Delete<mat-icon >delete</mat-icon></span>-->
 <!--          </button>-->
-      <button (click)="deleteCard(dummy)" class="btn btn-danger delete" style="margin-left: 10px;">Delete</button>
+      <button (click)="deleteCard(dummy)" class="btn btn-danger delete" style="margin-left: 90px;">Delete</button>
 <!--      <button mat-raised-button class="delete"  color="warn">Delete</button>-->
       </table>
 

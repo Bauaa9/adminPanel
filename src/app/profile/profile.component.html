@@ -17,7 +17,7 @@
 <!--    <div class="row">-->
 <!--        <div class="row">-->
           <div class="input-field col s12 m12 l6">
-            <input id="first_name" type="text" formControlName="firstName"  placeholder="First Name" required >
+            <input id="first_name" type="text" [(ngModel)]="userDetails.firstName"  formControlName="firstName"  placeholder="First Name" required >
           </div>
           <div *ngIf="requiredForm.controls['firstName'].invalid && requiredForm.controls['firstName'].touched" class="alert alert-danger">
             <div *ngIf="requiredForm.controls['firstName'].errors.required">
