@@ -27,6 +27,10 @@ export class SignInComponent implements OnInit {
   validate()
   {
     this.spinner.show().then(r => console.log('loading'));
+    if(this.subscribeService.isMerchantLogin==true){
+      //merchant login api
+      return ;
+    }
     this.service.api("post",this.user,"/authenticate",).subscribe(data=>{
       console.log(data);
       this.dialogRef.close();

@@ -13,33 +13,55 @@
 
 
  <body class="container">
- <form class="col s12">
-    <div class="row">
-        <div class="row">
+ <form class="col s12" [formGroup]="requiredForm" ngNativeValidate>
+<!--    <div class="row">-->
+<!--        <div class="row">-->
           <div class="input-field col s12 m12 l6">
-            <input id="first_name" type="text" [(ngModel)]="userDetails.firstName" [ngModelOptions]="{standalone: true}" placeholder="First Name" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a first Name between 3-25 characters" length="25">
+            <input id="first_name" type="text" formControlName="firstName"  placeholder="First Name" required >
+          </div>
+          <div *ngIf="requiredForm.controls['firstName'].invalid && requiredForm.controls['firstName'].touched" class="alert alert-danger">
+            <div *ngIf="requiredForm.controls['firstName'].errors.required">
+              First name is required.
+            </div>
           </div>
 
           <div class="input-field col s12 m12 l6">
-            <input id="lastname" [(ngModel)]="userDetails.lastName"  [ngModelOptions]="{standalone: true}"  placeholder="Last Name" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a last Name between 3-25 characters" length="25">
+            <input id="lastname" [(ngModel)]="userDetails.lastName" formControlName="lastName"   placeholder="Last Name" type="text" required class="validate" pattern="^\S.{1,23}\S$" title="Please enter a last Name between 3-25 characters" length="25">
           </div>
-        <div class="row">
+          <div *ngIf="requiredForm.controls['lastName'].invalid && requiredForm.controls['lastName'].touched" class="alert alert-danger">
+            <div *ngIf="requiredForm.controls['lastName'].errors.required">
+              Last name is required.
+            </div>
+          </div>
+
+
+<!--          <div class="row">-->
           <div class="input-field col s12 m12 l6">
             <i class="material-icons prefix">email</i>
-            <input id="email" placeholder="Email" type="email" [(ngModel)]="userDetails.email" [ngModelOptions]="{standalone: true}" required class="validate" title="Please enter a valid email">
+            <input id="email" placeholder="Email" type="email" [(ngModel)]="userDetails.email" formControlName="email"  required class="validate" title="Please enter a valid email">
           </div>
+            <div *ngIf="requiredForm.controls['email'].invalid && requiredForm.controls['email'].touched" class="alert alert-danger">
+              <div *ngIf="requiredForm.controls['email'].errors.required">
+                Email is invalid.
+              </div>
+            </div>
           <div class="input-field col s12 m12 l6">
             <i class="material-icons prefix">contact_phone</i>
-            <input id="phone-number" type="tel" placeholder="Phone Number" [(ngModel)]="userDetails.phoneNo" [ngModelOptions]="{standalone: true}" required title="Please enter a valid phone number (e.g., (123) 456-7890)" pattern="^[0-9]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" class="validate">
+            <input id="phone-number" type="tel" placeholder="Phone Number" formControlName="phoneNo" [(ngModel)]="userDetails.phoneNo"  required title="Please enter a valid phone number (e.g., (123) 456-7890)" pattern="^[0-9]?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" class="validate">
           </div>
-        </div>
-        <button class="waves-effect waves-light btn right" (click)="updateProfile()"  type="submit">save</button>
-
-    </div>
+            <div *ngIf="requiredForm.controls['phoneNo'].invalid && requiredForm.controls['phoneNo'].touched" class="alert alert-danger">
+              <div *ngIf="requiredForm.controls['phoneNo'].errors.required">
+                Email is invalid.
+              </div>
+            </div>
+<!--        </div>-->
+        <button class="waves-effect waves-light btn right" (click)="updateProfile()" [disabled]="!requiredForm.valid" type="submit">save</button>
+<br><br><br>
+<!--    </div>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-    </div>
+<!--    </div>-->
  </form>
  </body>
 

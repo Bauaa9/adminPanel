@@ -9,6 +9,7 @@ export class SubscribeService {
   showViewStatementTabs= new Subject<boolean>();
   cvv:any;
   expiryDate:any;
+  isMerchantLogin:boolean;
 
   constructor() {
   }

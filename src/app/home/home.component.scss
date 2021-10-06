@@ -6,3 +6,178 @@
     font-size: 36px;
   }
 }
+
+
+.navbar-dark .navbar-nav .nav-link {
+  color: aliceblue;
+  font-size: 18px;
+}
+
+.home img {
+  width: 100%;
+  height: 1200px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  color: aliceblue;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%,-50%);
+}
+
+.content h1 {
+  margin-right: 50%;
+  font-weight: bold;
+}
+
+.content p {
+  margin-top: 5%;
+  margin-right: 50%;
+  font-size: 20px;
+}
+
+.navbar-brand {
+  font-style: italic;
+}
+
+.home1 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+}
+
+.home1 img {
+  width: 100%;
+  margin-left: 40%;
+}
+
+.home2 {
+  position: absolute;
+  color: aliceblue;
+  top: 100%;
+  left: 40%;
+  transform: translate(-50%,-50%);
+}
+
+.home2 h1 {
+  margin-left: 50%;
+}
+
+.home2 p {
+  margin-left: 70%;
+}
+
+.home3 {
+  position: absolute;
+  color: aliceblue;
+  top: 110%;
+  left: 40%;
+  transform: translate(-50%,-50%);
+}
+
+.home3 img {
+  margin-top: 25%;
+}
+
+.home3 p {
+  margin-right: 60%;
+}
+
+.home4 {
+  position: absolute;
+  color: aliceblue;
+  top: 110%;
+  left: 60%;
+  transform: translate(-50%,-50%);
+}
+
+.home4 img {
+  margin-top: 35%;
+}
+
+.home4 p {
+  margin-right: 40%;
+}
+
+.home5 {
+  position: absolute;
+  color: aliceblue;
+  top: 110%;
+  left: 80%;
+  transform: translate(-50%,-50%);
+}
+
+.home5 img {
+  margin-top: 70%;
+}
+
+.home5 p {
+  margin-right: 10%;
+}
+
+.home6 {
+  position: absolute;
+  color: aliceblue;
+  top: 150%;
+  left: 33%;
+  transform: translate(-50%,-50%);
+}
+
+.home6 img {
+  margin-top: 35%;
+}
+
+.home6 p {
+  margin-right: 60%;
+}
+
+.home7 {
+  position: absolute;
+  color: aliceblue;
+  top: 150%;
+  left: 61%;
+  transform: translate(-50%,-50%);
+}
+
+.home7 img {
+  margin-top: 40%;
+}
+
+.home7 p {
+  margin-right: 40%;
+}
+
+.home8 {
+  position: absolute;
+  color: aliceblue;
+  top: 150%;
+  left: 80%;
+  transform: translate(-50%,-50%);
+}
+
+.home8 img {
+  margin-top: 73%;
+}
+
+.home8 p {
+  margin-right: 10%;
+}
+
+.home9 {
+  position: absolute;
+  color: aliceblue;
+  top: 190%;
+  left: 90%;
+  transform: translate(-50%,-50%);
+}
+
+.home10 {
+  position: absolute;
+  color: aliceblue;
+  top: 195%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SubscribeService} from '../../services/subscribe.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  isMerchantLogin:any;
+  constructor(private subscribeService:SubscribeService) {
+    this.isMerchantLogin = this.subscribeService.isMerchantLogin;
+  }
 
   ngOnInit(): void {
   }

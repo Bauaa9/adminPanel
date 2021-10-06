@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ApiService} from '../../services/api.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {SignInComponent} from '../sign-in/sign-in.component';
+import {SubscribeService} from '../../services/subscribe.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import {SignInComponent} from '../sign-in/sign-in.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service:ApiService,public dialog: MatDialog) {}
+  constructor(private service:ApiService,public dialog: MatDialog,private subscribeService:SubscribeService) {}
   title = 'admin-panel-layout';
   sideBarOpen = true;
 
@@ -19,11 +20,8 @@ export class HomeComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-  openDialog() {
-    const dialogConfig=new MatDialogConfig();
-    // dialogConfig.disableClose=true;
-    //dialogConfig.width="50%";
-    //dialogConfig.height="50%";
+  openCustomerLoginDialog() {
+    this.subscribeService.isMerchantLogin=false;
     this.dialog.open(SignInComponent);
   }
   ngOnInit(): void {
@@ -31,14 +29,6 @@ export class HomeComponent implements OnInit {
     window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
     window.onhashchange=function(){window.location.hash="no-back-button";}
   }
-
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(DialogContentExampleDialog);
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
 
   // tslint:disable-next-line:typedef
   tempFunction() {
@@ -49,6 +39,11 @@ export class HomeComponent implements OnInit {
     this.service.api("post",body,'/authenticate').subscribe((response)=>{
       console.log(response)
     })
+  }
+
+  openMerchantLoginDialog() {
+    this.subscribeService.isMerchantLogin=true;
+    this.dialog.open(SignInComponent);
   }
 }
 

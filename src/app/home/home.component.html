@@ -1,2 +1,98 @@
 <!--<button (click)="tempFunction()">Open dialog</button>-->
-<button mat-button (click)="openDialog()">Open dialog box</button>
+<!--<button mat-button (click)="openDialog()">Open dialog box</button>-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <b>SLYTHERIN.</b>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" (click)="openMerchantLoginDialog()" routerLinkActive="router-link-active" >As Merchant</a></li>
+            <li><a class="dropdown-item" (click)="openCustomerLoginDialog()" routerLinkActive="router-link-active" >As Customer</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="home">
+  <img src="../../assets/back1.png">
+  <div class="content">
+    <h1>Power your finance, grow your business</h1>
+    <h1>___</h1>
+    <p>Accept payments from customers. Automate payouts to vendors & employees. Never run out of working capital.</p>
+  </div>
+</section>
+
+<section class="home1">
+  <img src="../../assets/pg1.png">
+</section>
+
+<section class="home2">
+  <h1>Features</h1>
+  <p>___________</p>
+
+</section>
+
+<section class="home3">
+  <img src="../../assets/api.png" width="50" height="50">
+  <h3>API Driven</h3>
+  <p>Build your business for scale with our complete API-driven automation that requires zero manual intervention.</p>
+</section>
+
+<section class="home4">
+  <img src="../../assets/integration.png" width="50" height="50">
+  <h3>Easy Integration</h3>
+  <p>With plugins for all major platforms integrate and go live in no time.</p>
+</section>
+
+<section class="home5">
+  <img src="../../assets/secure.png" width="50" height="50">
+  <h3>Fast & Secure</h3>
+  <p>PCI DSS Level 1 compliant solution which removes your burden of regulatory compliance.</p>
+</section>
+
+<section class="home6">
+  <img src="../../assets/dashboard.png" width="50" height="50">
+  <h3>Dashboard Reporting</h3>
+  <p>Real-time data and insights on your Dashboard to make informed business decisions.</p>
+</section>
+
+<section class="home7">
+  <img src="../../assets/modes.png" width="50" height="50">
+  <h3>Multiple Payment Modes</h3>
+  <p>Offer your customers the luxury of all payment modes including Credit/Debit cards, Netbanking, UPI, Wallets etc.</p>
+</section>
+
+<section class="home8">
+  <img src="../../assets/user.png" width="50" height="50">
+  <h3>User Friendly UI</h3>
+  <p>Attractive and user friendly user interface to ease the appliction handling process.</p>
+</section>
+
+<section class="home9">
+  <p>FIND US ONLINE</p>
+  <img src="../../assets/fb.png" width="30" height="30">
+  <img src="../../assets/twt.png" width="30" height="30">
+  <img src="../../assets/linkedin.png" width="30" height="30">
+  <img src="../../assets/git.png" width="30" height="30">
+</section>
+
+<section class="home10">
+  <p>© SLYTHERIN 2021
+    All Rights Reserved</p>
+</section>
