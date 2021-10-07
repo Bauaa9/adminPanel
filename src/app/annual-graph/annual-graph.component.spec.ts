@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import { AnnualGraphComponent } from './annual-graph.component';
 
-describe('HomeComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('AnnualGraphComponent', () => {
+  let component: AnnualGraphComponent;
+  let fixture: ComponentFixture<AnnualGraphComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      declarations: [ AnnualGraphComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(AnnualGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

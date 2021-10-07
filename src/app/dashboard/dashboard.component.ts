@@ -1,21 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import jspdf from 'jspdf';
+import {MainServiceService} from '../../services/main-service.service';
+import {UserMerchant} from '../../models/userMerchant';
+
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-home',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  title = 'admin-panel-layout';
-  sideBarOpen = true;
 
-  constructor() { }
+  user:UserMerchant[]=[];
 
-  ngOnInit(): void {
+  constructor(private ser:MainServiceService,private http:HttpClient,content: ElementRef) {
+    //this.user=this.ser.getallUser();
+    //console.log(this.user);
+
+    this.ser.getUsers()
+      .subscribe( data => {
+        this.user = data;
+      });
   }
 
-  sideBarToggler() {
-    this.sideBarOpen = !this.sideBarOpen;
+  ngOnInit(): void {
+
+
+  }
+
+  @ViewChild('content')content: ElementRef |any;
+  public SavePDF(): void {
+    let content=this.content.nativeElement;
+   let doc = new jspdf('p', 'mm', 'a4');
+    let _elementHandlers =
+    {
+      '#editor':function(element:any,renderer:any){
+        return true;
+      }
+    };
+
+
+    doc.html(content);
+
+    doc.save('test.pdf');
   }
 
 }

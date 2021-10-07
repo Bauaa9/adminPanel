@@ -8,10 +8,10 @@
 
 
 
-  <a mat-list-item routerLinkActive="list-item-active" *ngIf=isMerchantLogin routerLink="/dashboard">
+  <a mat-list-item routerLinkActive="list-item-active" *ngIf=isMerchantLogin routerLink="/merchant-dashboard">
     <mat-icon>dashboard</mat-icon> Dashboard
   </a>
-  <a mat-list-item routerLinkActive="list-item-active" *ngIf=isMerchantLogin routerLink="/cust-transaction">
+  <a mat-list-item routerLinkActive="list-item-active" *ngIf=isMerchantLogin routerLink="/merchant-transaction">
     <mat-icon >view_list </mat-icon> Transaction
   </a>
   <a mat-list-item routerLinkActive="list-item-active" *ngIf=!isMerchantLogin routerLink="/cust-transaction">

@@ -1,0 +1,69 @@
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  .btn-group button {
+  background-color: #04AA6D;
+  border: 1px solid green;
+  padding: 10px 24px;
+  color: white;
+  cursor: pointer;
+  float: left;
+}
+
+
+.btn-group:after {
+
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none;
+}
+
+
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+  tr:nth-child(even) {background-color: #f2f2f2;}
+  </style>
+<div>
+  <h1>Services</h1>
+  <div class="btn-group">
+    <button type="button" (click)="SavePDF()">Download PDF</button>
+<br>
+  </div>
+
+    <br/><br/>
+  <table class="container" id="content" #content body bgcolor="#ffefd5">
+     <thead>
+        <tr>
+           <th>PAYMENT TYPE</th>
+           <th>TOTAL AMOUNT</th>
+           <th>ORDER ID</th>
+           <th>STATUS</th>
+           <th>DATE</th>
+
+        </tr>
+     </thead>
+     <tbody>
+        <tr *ngFor="let item of user">
+           <th>{{ item.payment_type }}</th>
+           <td>Rs.{{ item.total_amount }}</td>
+           <td>{{ item.order_id }}</td>
+           <td>{{ item.status}}</td>
+           <td>{{ item.date}}</td>
+
+        </tr>
+     </tbody>
+  </table>
+</div>

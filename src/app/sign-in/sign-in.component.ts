@@ -26,12 +26,14 @@ export class SignInComponent implements OnInit {
 
   validate()
   {
+    let url = '/authenticate';
+
     this.spinner.show().then(r => console.log('loading'));
     if(this.subscribeService.isMerchantLogin==true){
       //merchant login api
-      return ;
+      url='/authenticate-merchant';
     }
-    this.service.api("post",this.user,"/authenticate",).subscribe(data=>{
+    this.service.api("post",this.user,url).subscribe(data=>{
       console.log(data);
       this.dialogRef.close();
       this.subscribeService.isLoggedIn.next(true)

@@ -41,6 +41,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import {AuthGuard} from '../services/auth.guard';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import { DisplayOtpExpiryComponent } from './display-otp-expiry/display-otp-expiry.component';
+import {TransactionComponent} from './transaction/transaction.component';
+import {NgCircleProgressModule} from 'ng-circle-progress';
+import {GraphComponent} from './graph/graph.component';
+import {MonthlyGraphComponent} from './monthly-graph/monthly-graph.component';
+import {AnnualGraphComponent} from './annual-graph/annual-graph.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -65,6 +71,10 @@ import { DisplayOtpExpiryComponent } from './display-otp-expiry/display-otp-expi
     AddAddressComponent,
     SignInComponent,
     DisplayOtpExpiryComponent,
+    TransactionComponent,
+    GraphComponent,
+    MonthlyGraphComponent,
+    AnnualGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +98,8 @@ import { DisplayOtpExpiryComponent } from './display-otp-expiry/display-otp-expi
     MatSelectModule,
     InputMaskAngularModule,
     MatDialogModule,
+    NgCircleProgressModule,
+    ChartsModule,
   ],
   providers: [DatePipe,AuthGuard,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService],

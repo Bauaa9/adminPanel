@@ -1,0 +1,32 @@
+
+<html>
+  <head>
+  <style>
+    .div1{
+  width: 800px;
+  padding: 10px;
+  border: 0px solid gray;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #D6EAF8;
+}
+    </style>
+    </head>
+
+    <body>
+
+
+<div align="center" class="div1" style="display: block;">
+  <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>
+
+</body>
+</html>

@@ -15,6 +15,7 @@ import {PaymentOptionsComponent} from './payment-options/payment-options.compone
 import {OtpComponent} from './otp/otp.component';
 import {AddAddressComponent} from './add-address/add-address.component';
 import {AuthGuard} from '../services/auth.guard';
+import {TransactionComponent} from './transaction/transaction.component';
 
 const routes: Routes = [
   { path: '',  pathMatch: 'full',component: HomeComponent  },
@@ -32,6 +33,10 @@ const routes: Routes = [
   { path: 'payment', component: PaymentOptionsComponent,canActivate: [AuthGuard]},
   { path: 'otp', component: OtpComponent,canActivate: [AuthGuard]},
   {path: 'add-address', component: AddAddressComponent,canActivate: [AuthGuard]},
+
+  {path:'merchant-transaction',component:TransactionComponent},
+  {path:'merchant-dashboard',component:DashboardComponent}
+
 ];
 
 @NgModule({

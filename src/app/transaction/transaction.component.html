@@ -1,0 +1,233 @@
+
+  <h2 style="text-align:left; padding-left: 20px">Dashboard</h2>
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+
+<style>
+
+.btn-group button {
+  background-color: #04AA6D;
+  border: 1px solid green;
+  padding: 10px 24px;
+  color: white;
+  cursor: pointer;
+  float: left;
+}
+
+
+.btn-group:after {
+
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none;
+}
+
+
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+.div1{
+  width: 200px;
+  padding: 10px;
+  border: 0px solid gray;
+  margin: 0;
+  background-color: #D6EAF8;
+}
+
+.div2{
+  width: 200px;
+  padding: 10px;
+  border: 0px solid gray;
+  margin: 0;
+  color: red;
+
+}
+
+p {text-align: center;
+  color: black;
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+
+
+  }
+
+table {
+  border-collapse: separate;
+  border-spacing: 30px 0;
+}
+
+td {
+  padding: 0px 0;
+}
+select {
+				appearance: none;
+        font-size: 15px;
+
+      background-color: cornflowerblue;
+				width: 100%;
+				height: 100%;
+				color: black;
+				cursor: pointer;
+				border:1px solid black;
+				border-radius:3px;
+			}
+			.select {
+				position: relative;
+				display: block;
+				width: 15em;
+				height: 2em;
+				line-height: 3;
+				overflow: hidden;
+				border-radius: .25em;
+				padding-bottom:10px;
+
+			}
+
+
+
+
+
+</style>
+</head>
+<body >
+
+  <table>
+    <thead>
+      <tr><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of transactionfirstRow">
+        <td><div class="div1"><p>Total Transactions Till Date</p> <br> <p>Rs.{{item.all}}</p></div></td>
+        <td><div class="div1"><p>Total Transactions  Today</p> <br> <p>Rs.{{item.forToday}}</p></div></td>
+        <td><div class="div1"><p>Credit Card Transactions</p> <br> <p>Rs.{{item.byCredit}}</p></div></td>
+        <td>
+          <div class="div1"><p>Debit Card Transactions</p> <br> <p>Rs.{{item.byDebit}}</p></div></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <b style="text-align:left; padding-left: 20px">Select for Filter:</b><br>
+  <div style="text-align:left; padding-left: 20px" class="select" >
+    <select style="text-align:left; padding-left: 20px" #organization (change)="selectfilterOption(organization.value)"  >
+      <option>Today</option>
+      <option>Month</option>
+      <option>Year</option>
+      <option>Week</option>
+
+    </select>
+  </div>
+  <br>
+
+
+  <table>
+    <thead>
+      <tr><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredData">
+        <td><div class="div2"><p class="p1">All Transaction</p> <br> <p style="color:blue"> Rs.{{item.all}}</p></div></td>
+        <td><div class="div2"><p>All Transaction  Today</p> <br> <p style="color:#943126">Rs.{{item.forToday}}</p></div></td>
+        <td><div class="div2"><p>All Transaction By Credit Card</p> <br> <p style="color:#F1C40F">Rs.{{item.byCredit}}</p></div></td>
+        <td>
+          <div class="div2"><p>All Transaction By Debit</p> <br> <p style="color:#2E86C1">Rs.{{item.byDebit}}</p></div></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+<br>
+  <table>
+    <thead>
+      <tr><th></th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <circle-progress [percent]=perData[0]
+       [radius]="100"
+        [outerStrokeWidth]="5"
+         [innerStrokeWidth]="0"
+        [outerStrokeColor]="'#454B1B'"
+   [innerStrokeColor]="'#7f9fc1'"
+    [animation]="true"
+    [subtitleFormat]=formatSubtitle
+     [animationDuration]="300"
+     [subtitleFontSize]="'30'"
+     [titleFontSize]="'40'"
+  ></circle-progress>
+        </td>
+        <td>
+          <circle-progress [percent]=perData[1]
+       [radius]="100"
+        [outerStrokeWidth]="5"
+         [innerStrokeWidth]="0"
+        [outerStrokeColor]="'#8E44AD'"
+   [innerStrokeColor]="'#7f9fc1'"
+    [animation]="true"
+    [subtitleFormat]=formatSubtitle2
+     [animationDuration]="300"
+     [subtitleFontSize]="'30'"
+     [titleFontSize]="'40'"
+  ></circle-progress>
+        </td>
+        <td>
+          <circle-progress [percent]=perData[2]
+       [radius]="100"
+        [outerStrokeWidth]="5"
+         [innerStrokeWidth]="0"
+        [outerStrokeColor]="'#FFA500'"
+   [innerStrokeColor]="'#7f9fc1'"
+    [animation]="true"
+    [subtitleFormat]=formatSubtitle3
+     [animationDuration]="300"
+     [subtitleFontSize]="'15'"
+     [titleFontSize]="'40'"
+  ></circle-progress>
+        </td>
+        <td>
+          <circle-progress [percent]=perData[3]
+       [radius]="100"
+        [outerStrokeWidth]="5"
+         [innerStrokeWidth]="0"
+        [outerStrokeColor]="'#FF0000'"
+   [innerStrokeColor]="'#7f9fc1'"
+    [animation]="true"
+    [subtitleFormat]=formatSubtitle4
+     [animationDuration]="300"
+     [subtitleFontSize]="'20'"
+     [titleFontSize]="'40'"
+  ></circle-progress>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<br>
+<div style="text-align:left; padding-left: 20px" class="btn-group">
+  <button type="button" (click)="WeeklyGraph()">Weekly Graph</button>
+  <button type="button" (click)="MonthlyGraph()">Monthly Graph</button>
+  <button type="button" (click)="AnnualGraph()">Annual Graph</button>
+</div>
+<br>
+<app-graph *ngIf="currentGraphindex==0"></app-graph>
+<app-monthly-graph *ngIf="currentGraphindex==1"></app-monthly-graph>
+<app-annual-graph *ngIf="currentGraphindex==2"></app-annual-graph>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
