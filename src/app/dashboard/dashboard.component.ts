@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     this.ser.getUsers()
       .subscribe( data => {
         this.user = data;
+        console.log(this.user);
       });
   }
 

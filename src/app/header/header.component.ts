@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
   logOut() {
     if(this.subscribeService.isMerchantLogin==true){
 
-    }else{
       localStorage.setItem("username" , null);
       localStorage.setItem("userToken" , null);
     }

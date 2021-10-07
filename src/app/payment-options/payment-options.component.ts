@@ -8,7 +8,7 @@ import {User} from '../../models/User';
 import {ApiService} from '../../services/api.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
-
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-payment-options',
   templateUrl: './payment-options.component.html',
@@ -34,7 +34,7 @@ export class PaymentOptionsComponent implements OnInit {
   formBuilder: FormBuilder;
   cardValidator: CardValidator;
   apiTxnId:any;
-  apiMerchantData:any;
+  apiMerchantName:any;
 
   generateTxnId(){
     this.spinner.show().then(r => console.log('loading'));
@@ -44,8 +44,10 @@ export class PaymentOptionsComponent implements OnInit {
       'orderId':1
     },'/generate-id',true).subscribe(responseData => {
       this.spinner.hide().then(r => console.log('stopped'));
+      console.log('rohit : '+responseData);
+      this.apiTxnId=responseData['body']['pgRefId'];
+      this.apiMerchantName=responseData['body']['apiMerchantName'];
       console.log('rohit : '+this.apiTxnId);
-      this.apiTxnId=responseData['pgRefId'];
     });
   }
 
@@ -53,7 +55,6 @@ export class PaymentOptionsComponent implements OnInit {
     this.spinner.show().then(r => console.log('loading'));
     this.apiService.api("post",{
     },'/generate-id',true).subscribe(responseData => {
-      this.apiMerchantData=responseData;
       this.generateTxnId();
     });
   }
@@ -142,23 +143,96 @@ export class PaymentOptionsComponent implements OnInit {
     return ((sum + lastDigit) % 10 === 0);
 }
 
+
+   encryptUsingAES256(cardNumber:string) {
+    let _key = CryptoJS.enc.Utf8.parse("slytherin");
+    let _iv = CryptoJS.enc.Utf8.parse("slytherin");
+    return  CryptoJS.AES.encrypt(
+      JSON.stringify(cardNumber), _key, {
+        keySize: 16,
+        iv: _iv,
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+      }).toString();
+  }
+
   // tslint:disable-next-line: typedef
   payment(){
-    this.spinner.show().then(r => console.log('loading'));
-    this.apiService.api("post",{
-       "cardType":this.user.type,
-       "cardNumber":this.user.cardNum,
-       "cvv":this.user.cvv,
-       "holderName":this.user.holderName,
-       "expDate":this.user.expDate,
+    let body={
+      // "cardType":this.user.type,
+      "cardType":"credit",
+      "cardNumber":this.encryptUsingAES256(this.user.cardNum),
+      "cvv":this.user.cvv,
+      "holderName":this.user.holderName,
+      "expDate":this.user.expDate,
       "totalAmt":this.amount,
-       "pgRefId":this.apiTxnId,
-       "merchantName":this.apiMerchantData[''],
-       "paymentMethod":this.user.type
-    },'/process-payment',true).subscribe(responseData => {
+      "pgRefId":this.apiTxnId,
+      "merchantName":this.apiMerchantName,
+      "paymentMethod":this.user.type
+    };
+    console.log(body)
+    this.spinner.show().then(r => console.log('loading'));
+    this.apiService.api("post",body,'/process-payment',true).subscribe(data => {
       this.spinner.hide().then(r => console.log('stopped'));
-      this.router.navigate(['/otp', { totalAmount:this.amount}],);
+      console.log(data)
+      if (data['status'] == 'valid')
+        this.router.navigateByUrl('/otp', {state : { totalAmount:this.amount,txnId:data['txn_id']}},);
+      else{
+        let errors:String='';
+        console.log(data['error']);
+        if(data['error'].length>0){
+          let listApiError = JSON.parse(JSON.stringify(data['error']))
+          //let list:any= JSON.parse(JSON.stringify('[rohit,tejas]'))
+          console.log(listApiError)
+          let list1:[]=listApiError.split(',');
+          list1.forEach((value:string, index) => {
+            if(index==0){
+              value = value.substring(1,value.length)
+              console.log(value)
+            }
+            if(index==list1.length-1){
+              value = value.substring(0,value.length-1)
+              console.log(value)
+
+            }
+
+            if(value=='err_invalid_card_type'){
+              errors+='Invalid card type\n';
+            }
+            if(value=='err_invalid_card_name'){
+              errors+='Invalid holder name\n';
+            }
+            if(value=='err_invalid_card_date'){
+              errors+='Invalid expiry date\n';
+            }
+            if(value=='err_invalid_card_cvv'){
+              errors+='Invalid cvv\n';
+            }
+            if(value=='err_amount_limit_exceeded'){
+              errors+='Amount limit exceeded\n';
+            }
+            if(value=='err_invalid_card_number'){
+              errors+='Invalid card number\n';
+            }
+          })
+
+          // for(let i=0;i<listApiError.length;i++){
+
+          // let e=listApiError[i];
+          //console.log(e);
+
+          //}
+        }
+        console.log(errors);
+        alert(errors);
+      }
+
     });
   }
+
+
+
+
+
 
 }

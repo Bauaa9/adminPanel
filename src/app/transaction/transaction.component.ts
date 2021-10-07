@@ -37,7 +37,6 @@ duration:String='';
     this.ser.getTransactionData()
     .subscribe( data => {
       this.transactionfirstRow = data;
-
     });
 
 

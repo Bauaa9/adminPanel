@@ -18,6 +18,10 @@ export class AuthService {
     }
     if(this.jwtHelper.isTokenExpired(token)==false){
       this.subscribeService.isLoggedIn.next(true)
+      if(this.subscribeService.isMerchantLogin==true) {
+        this.subscribeService.isMerchantSubscribe.next(true);
+        console.log('it is merchant');
+      }
       return  true;
     }
     return false;

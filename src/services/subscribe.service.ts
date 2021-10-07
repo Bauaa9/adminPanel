@@ -10,7 +10,7 @@ export class SubscribeService {
   cvv:any;
   expiryDate:any;
   isMerchantLogin:boolean;
-
+  isMerchantSubscribe=new Subject<any>()
   constructor() {
   }
 }

@@ -11,6 +11,9 @@ export class SidenavComponent implements OnInit {
   isMerchantLogin:any;
   constructor(private subscribeService:SubscribeService) {
     this.isMerchantLogin = this.subscribeService.isMerchantLogin;
+      this.subscribeService.isMerchantSubscribe.subscribe(value => {
+        this.isMerchantLogin = this.subscribeService.isMerchantLogin;
+      });
   }
 
   ngOnInit(): void {

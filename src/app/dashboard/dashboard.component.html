@@ -13,7 +13,7 @@
   .btn-group button {
   background-color: #04AA6D;
   border: 1px solid green;
-  padding: 10px 24px;
+  padding: 5px 5px;
   color: white;
   cursor: pointer;
   float: left;
@@ -29,6 +29,11 @@
   border-right: none;
 }
 
+div {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 
 .btn-group button:hover {
   background-color: #3e8e41;
@@ -36,12 +41,12 @@
 
   tr:nth-child(even) {background-color: #f2f2f2;}
   </style>
-<div>
-  <h1>Services</h1>
-  <div class="btn-group">
-    <button type="button" (click)="convertToPDF()">Download PDF</button>
+<div >
+  <h3>Transactions</h3>
+<!--  <div class="btn-group">-->
+    <button  class="btn btn-success ml-4" type="button" (click)="convertToPDF()">Download PDF</button>
 <br>
-  </div>
+<!--  </div>-->
 
     <br/><br/>
   <table class="container" id="contentToConvert" #content body bgcolor="#ffefd5">
@@ -57,11 +62,11 @@
      </thead>
      <tbody>
         <tr *ngFor="let item of user">
-           <th>{{ item.payment_type }}</th>
-           <td>Rs.{{ item.total_amount }}</td>
-           <td>{{ item.order_id }}</td>
+           <th>{{ item.paymentType==null?"NA" :item.paymentType }}</th>
+           <td>Rs.{{ item.totalAmount }}</td>
+           <td>{{ item.orderId }}</td>
            <td>{{ item.status}}</td>
-           <td>{{ item.date}}</td>
+           <td>{{ item.dataTime}}</td>
 
         </tr>
      </tbody>

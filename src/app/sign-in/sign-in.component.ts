@@ -33,6 +33,7 @@ export class SignInComponent implements OnInit {
       //merchant login api
       url='/authenticate-merchant';
       navigationUrl='/merchant-dashboard';
+
     }
     this.service.api("post",this.user,url).subscribe(data=>{
       this.dialogRef.close();
@@ -40,7 +41,9 @@ export class SignInComponent implements OnInit {
       localStorage.setItem("username" , this.user.username);
       localStorage.setItem("userToken" , data['token']);
       this.spinner.hide().then(r => console.log('stopped'));
-
+      if(this.subscribeService.isMerchantLogin==true) {
+        this.subscribeService.isMerchantSubscribe.next(true);
+      }
       this.router.navigateByUrl(navigationUrl);
     })
   }

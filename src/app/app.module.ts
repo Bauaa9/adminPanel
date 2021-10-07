@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -34,7 +33,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {InputMaskAngularModule} from 'input-mask-angular';
 import {SavedDetailsComponent} from './saved-details/saved-details.component';
-import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 import {DatePipe} from '@angular/common';
 import {AddAddressComponent} from './add-address/add-address.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -42,7 +41,7 @@ import {AuthGuard} from '../services/auth.guard';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import { DisplayOtpExpiryComponent } from './display-otp-expiry/display-otp-expiry.component';
 import {TransactionComponent} from './transaction/transaction.component';
-import {NgCircleProgressModule} from 'ng-circle-progress';
+import {CircleProgressOptions, NgCircleProgressModule} from 'ng-circle-progress';
 import {GraphComponent} from './graph/graph.component';
 import {MonthlyGraphComponent} from './monthly-graph/monthly-graph.component';
 import {AnnualGraphComponent} from './annual-graph/annual-graph.component';
@@ -106,7 +105,7 @@ import {TxnFailComponent} from './txn-fail/txn-fail.component';
     ChartsModule,
   ],
   providers: [DatePipe,AuthGuard,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService],
+    JwtHelperService,CircleProgressOptions],
   bootstrap: [AppComponent],
   // entryComponents:[SidenavComponent]
 

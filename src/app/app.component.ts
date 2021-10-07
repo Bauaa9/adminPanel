@@ -20,6 +20,11 @@ export class AppComponent {
     this.subscribeService.isLoggedIn.subscribe(value => {
       if(value){
         this.isLoggedIn=true;
+        console.log(this.subscribeService.isMerchantLogin+'nikhil');
+        if(this.subscribeService.isMerchantLogin==true) {
+          this.subscribeService.isMerchantSubscribe.next(true);
+          console.log('it is merchant');
+        }
         console.log('it is true')
       }else{
         this.isLoggedIn=false;

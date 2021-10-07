@@ -28,8 +28,9 @@ export class CreditCardTransactionComponent implements OnInit {
     this.spinner.show().then(r => console.log('loading'));
     this.apiService.api("post",{},'/creditdetails',true).subscribe((response)=>{
       this.responseData=response;
+      console.log(this.responseData);
       this.subscriptionService.cvv=response['cardetails']['cvv']
-      this.subscriptionService.expiryDate =response['cardetails']['expiry_date']
+      this.subscriptionService.expiryDate =response['cardetails']['expiryDate']
         console.log(this.responseData['totaloutstanding'])
       this.spinner.hide().then(r => console.log('stopped'));
     })

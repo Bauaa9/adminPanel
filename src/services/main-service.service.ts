@@ -22,14 +22,18 @@ export class MainServiceService {
 
   constructor(private http:HttpClient) { }
 
-  private url = 'http://localhost:8080/show';
-  private transactionUrl='http://localhost:8080/firstrow';
-  private percentageUrlUrl='http://localhost:8080/percentagedata';
-
+  private url = 'http://localhost:8083/show';
+  private transactionUrl='http://localhost:8083/firstrow';
+  private percentageUrlUrl='http://localhost:8083/percentagedata';
+  token = localStorage.getItem('userToken');
+   headers={
+    'Content-Type':'application/json',
+     'Authorization':'Bearer '+this.token
+   };
 
   public  getallUser():UserMerchant[]{
-    let url = 'http://localhost:8080/show';
-    this.http.get<UserMerchant[]>(url).subscribe(
+    let url = 'http://localhost:8083/show';
+    this.http.get<UserMerchant[]>(url,{headers:this.headers}).subscribe(
       res=>{
         console.log(res);
         this.user=res;
@@ -47,25 +51,25 @@ export class MainServiceService {
 }
 
 public getUsers() {
-  return this.http.get<UserMerchant[]>(this.url);
+  return this.http.get<UserMerchant[]>(this.url,{headers:this.headers});
 }
 
 public getTransactionData() {
-  return this.http.get<TransactionData[]>(this.transactionUrl);
+  return this.http.get<TransactionData[]>(this.transactionUrl,{headers:this.headers});
 }
 
 public getFilterd(filterDuration:String){
-  let filterUrl='http://localhost:8080/filterBy/'+filterDuration;
-  return this.http.get<TransactionData[]>(filterUrl);
+  let filterUrl='http://localhost:8083/filterBy/'+filterDuration;
+  return this.http.get<TransactionData[]>(filterUrl,{headers:this.headers});
 }
 
 public getPercentageData(){
-  return this.http.get<number[]>(this.percentageUrlUrl);
+  return this.http.get<number[]>(this.percentageUrlUrl,{headers:this.headers});
 }
 
 public getGraphData(duration:String){
-  let graphUrl='http://localhost:8080/graphdata/'+duration;
-  return this.http.get<Graph[]>(graphUrl);
+  let graphUrl='http://localhost:8083/graphdata/'+duration;
+  return this.http.get<Graph[]>(graphUrl,{headers:this.headers});
 }
 
  setDuration(x:String):String {
