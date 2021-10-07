@@ -27,20 +27,21 @@ export class SignInComponent implements OnInit {
   validate()
   {
     let url = '/authenticate';
-
+    let navigationUrl='/cust-transaction';
     this.spinner.show().then(r => console.log('loading'));
     if(this.subscribeService.isMerchantLogin==true){
       //merchant login api
       url='/authenticate-merchant';
+      navigationUrl='/merchant-dashboard';
     }
     this.service.api("post",this.user,url).subscribe(data=>{
-      console.log(data);
       this.dialogRef.close();
       this.subscribeService.isLoggedIn.next(true)
       localStorage.setItem("username" , this.user.username);
       localStorage.setItem("userToken" , data['token']);
       this.spinner.hide().then(r => console.log('stopped'));
-      this.router.navigateByUrl('/cust-transaction');
+
+      this.router.navigateByUrl(navigationUrl);
     })
   }
 }

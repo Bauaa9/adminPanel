@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { images } from 'src/environments/environment';
 import {User} from '../../models/User';
+import {ApiService} from '../../services/api.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-payment-options',
@@ -13,7 +16,7 @@ import {User} from '../../models/User';
 })
 export class PaymentOptionsComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private apiService:ApiService,private spinner:NgxSpinnerService) {
     this.user = new User();
     this.formBuilder = new FormBuilder();
 
@@ -26,13 +29,38 @@ export class PaymentOptionsComponent implements OnInit {
   finalUrl = '';
   paymentGif = images.paymentGif;
   myForm!: FormGroup;
-  amount = 0;
+  amount = this.router.getCurrentNavigation().extras.state['totalAmount'];
   user: User;
   formBuilder: FormBuilder;
   cardValidator: CardValidator;
+  apiTxnId:any;
+  apiMerchantData:any;
+
+  generateTxnId(){
+    this.spinner.show().then(r => console.log('loading'));
+    this.apiService.api("post",{
+      'secretKey':'rohit',
+      'merchentId':1,
+      'orderId':1
+    },'/generate-id',true).subscribe(responseData => {
+      this.spinner.hide().then(r => console.log('stopped'));
+      console.log('rohit : '+this.apiTxnId);
+      this.apiTxnId=responseData['pgRefId'];
+    });
+  }
+
+  getMerchantData(){
+    this.spinner.show().then(r => console.log('loading'));
+    this.apiService.api("post",{
+    },'/generate-id',true).subscribe(responseData => {
+      this.apiMerchantData=responseData;
+      this.generateTxnId();
+    });
+  }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
+    this.generateTxnId();
     this.myForm = this.formBuilder.group({
       holderName: [
         null,
@@ -76,7 +104,7 @@ export class PaymentOptionsComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  logo(num: string) {
+  logo(num: any) {
     if (num.charAt(0) === '4'){
       this.finalUrl = 'url(' + this.visaUrl + ')';
     }
@@ -86,7 +114,7 @@ export class PaymentOptionsComponent implements OnInit {
     return this.finalUrl;
   }
 
-  mod10 = (num: string): boolean => {
+  mod10 = (num:any ): boolean => {
     console.log('mod:' + num);
     num = num.replace(/\s/g, '');
  // 1. Remove last digit;
@@ -116,9 +144,21 @@ export class PaymentOptionsComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   payment(){
-    console.log(this.myForm);
-    console.log(this.user);
-    this.router.navigate(['/otp']);
+    this.spinner.show().then(r => console.log('loading'));
+    this.apiService.api("post",{
+       "cardType":this.user.type,
+       "cardNumber":this.user.cardNum,
+       "cvv":this.user.cvv,
+       "holderName":this.user.holderName,
+       "expDate":this.user.expDate,
+      "totalAmt":this.amount,
+       "pgRefId":this.apiTxnId,
+       "merchantName":this.apiMerchantData[''],
+       "paymentMethod":this.user.type
+    },'/process-payment',true).subscribe(responseData => {
+      this.spinner.hide().then(r => console.log('stopped'));
+      this.router.navigate(['/otp', { totalAmount:this.amount}],);
+    });
   }
 
 }

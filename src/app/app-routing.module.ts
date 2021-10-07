@@ -16,6 +16,8 @@ import {OtpComponent} from './otp/otp.component';
 import {AddAddressComponent} from './add-address/add-address.component';
 import {AuthGuard} from '../services/auth.guard';
 import {TransactionComponent} from './transaction/transaction.component';
+import {TxnFailComponent} from './txn-fail/txn-fail.component';
+import {TxnSuccessComponent} from './txn-success/txn-success.component';
 
 const routes: Routes = [
   { path: '',  pathMatch: 'full',component: HomeComponent  },
@@ -34,8 +36,11 @@ const routes: Routes = [
   { path: 'otp', component: OtpComponent,canActivate: [AuthGuard]},
   {path: 'add-address', component: AddAddressComponent,canActivate: [AuthGuard]},
 
-  {path:'merchant-transaction',component:TransactionComponent},
-  {path:'merchant-dashboard',component:DashboardComponent}
+  {path:'merchant-transaction',component:TransactionComponent,canActivate: [AuthGuard]},
+  {path:'merchant-dashboard',component:DashboardComponent,canActivate: [AuthGuard]},
+
+  {path:'txn-success',component:TxnSuccessComponent,canActivate: [AuthGuard]},
+  {path:'txn-failed',component:TxnFailComponent,canActivate: [AuthGuard]}
 
 ];
 

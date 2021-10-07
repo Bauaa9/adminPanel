@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import jspdf from 'jspdf';
 import {MainServiceService} from '../../services/main-service.service';
 import {UserMerchant} from '../../models/userMerchant';
-
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-home',
@@ -29,21 +29,23 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  @ViewChild('content')content: ElementRef |any;
-  public SavePDF(): void {
-    let content=this.content.nativeElement;
-   let doc = new jspdf('p', 'mm', 'a4');
-    let _elementHandlers =
-    {
-      '#editor':function(element:any,renderer:any){
-        return true;
-      }
-    };
+  public convertToPDF()
+  {
+    var data = document.getElementById('contentToConvert') as HTMLCanvasElement;
+    html2canvas(data).then(canvas => {
+// Few necessary setting options
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
 
-
-    doc.html(content);
-
-    doc.save('test.pdf');
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('Transaction_details.pdf'); // Generated PDF
+    });
   }
+
 
 }
