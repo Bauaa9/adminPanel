@@ -36,7 +36,8 @@ export class OtpComponent implements OnInit {
     let body={
       txnId:this.otpData['txn_id'],
       otp:this.otp,
-      totalAmt:this.otpData['totalAmt']
+      totalAmt:this.otpData['totalAmt'],
+      cardIdToPay:1
     };
     console.log(body);
 

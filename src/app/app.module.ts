@@ -48,6 +48,7 @@ import {AnnualGraphComponent} from './annual-graph/annual-graph.component';
 import {ChartsModule} from 'ng2-charts';
 import {TxnSuccessComponent} from './txn-success/txn-success.component';
 import {TxnFailComponent} from './txn-fail/txn-fail.component';
+import { DisplayCardsPopupComponent } from './display-cards-popup/display-cards-popup.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {TxnFailComponent} from './txn-fail/txn-fail.component';
     MonthlyGraphComponent,
     AnnualGraphComponent,
     TxnSuccessComponent,
-    TxnFailComponent
+    TxnFailComponent,
+    DisplayCardsPopupComponent
   ],
   imports: [
     BrowserModule,

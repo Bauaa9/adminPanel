@@ -9,6 +9,8 @@ import {ApiService} from '../../services/api.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 import * as CryptoJS from 'crypto-js';
+import {DisplayCardsPopupComponent} from '../display-cards-popup/display-cards-popup.component';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 @Component({
   selector: 'app-payment-options',
   templateUrl: './payment-options.component.html',
@@ -16,7 +18,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class PaymentOptionsComponent implements OnInit {
 
-  constructor(private router: Router,private apiService:ApiService,private spinner:NgxSpinnerService) {
+  constructor(private router: Router,private apiService:ApiService,private spinner:NgxSpinnerService,public dialog: MatDialog) {
     this.user = new User();
     this.formBuilder = new FormBuilder();
 
@@ -59,8 +61,17 @@ export class PaymentOptionsComponent implements OnInit {
     });
   }
 
+
+  openDialog() {
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    //dialogConfig.width="50%";
+    //dialogConfig.height="50%";
+    this.dialog.open(DisplayCardsPopupComponent);
+  }
   // tslint:disable-next-line: typedef
   ngOnInit() {
+    // this.openDialog();
     this.generateTxnId();
     this.myForm = this.formBuilder.group({
       holderName: [
@@ -117,9 +128,9 @@ export class PaymentOptionsComponent implements OnInit {
 
   mod10 = (num:any ): boolean => {
     console.log('mod:' + num);
-    num = num.replace(/\s/g, '');
+    num = num?.replace(/\s/g, '');
  // 1. Remove last digit;
-    const lastDigit = Number(num[num.length - 1]);
+    const lastDigit = Number(num[num?.length - 1]);
  // 2. Reverse card number
     const reverseCardNumber = num
    .slice(0, num.length - 1)
@@ -168,7 +179,7 @@ export class PaymentOptionsComponent implements OnInit {
       "totalAmt":this.amount,
       "pgRefId":this.apiTxnId,
       "merchantName":this.apiMerchantName,
-      "paymentMethod":this.user.type
+      "paymentMethod":this.user.type,
     };
     console.log(body)
     this.spinner.show().then(r => console.log('loading'));

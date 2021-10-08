@@ -2,9 +2,9 @@
     <div class=" mt-5" style="width: 100%;">
     <div class="mr-5" style="margin-left: 5%; font-weight: bold;font-size: larger;">
       <label class="font-weight-bold;font-size:large">Total Amt Due <label class="text-warning" style="margin-right: 200px;">: Rs {{responseData.totalAmountDue}}/-
-        <button type="button" routerLink="/payment" class="btn btn-success ml-4">Pay</button></label></label>
+        <button type="button" routerLink="/payment"  [state]="{ totalAmount:responseData?.totalAmountDue }" class="btn btn-success ml-4">Pay</button></label></label>
       <label class="font-weight-bold">Min Amt Due <label class="text-warning">: Rs {{responseData.minAmountDue}}/-
-        <button type="button" routerLink="/payment" class="btn btn-success ml-4">Pay</button>
+        <button type="button"routerLink="/payment"  [state]="{ totalAmount:responseData?.minAmountDue }" class="btn btn-success ml-4">Pay</button>
       </label></label>
     </div>
 <mat-divider></mat-divider>
