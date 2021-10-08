@@ -28,10 +28,10 @@ export class DisplayCardsPopupComponent implements OnInit {
         // data['allCards'].forEach((element)=>{
         //   this.ITEMS.push(element.card_id,element.card_number)
         // })
-        console.log(this.ITEMS)
-        this.itemsList = this.ITEMS;
-        this.radioSelected = "1";
-        this.getSelecteditem();
+        // console.log(this.ITEMS)
+        // this.itemsList = this.ITEMS;
+        // this.radioSelected = "1";
+        // this.getSelecteditem();
         this.spinner.hide().then(r => console.log('stopped'));
       });
 

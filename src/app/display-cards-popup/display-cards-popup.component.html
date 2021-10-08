@@ -1,22 +1,25 @@
-<div class="text-center mt-5">
+<!--<div class="text-center mt-5">-->
 <!--  <h4>Selected value is {{radioSel.name}}</h4>-->
 
-  <div>
-    <ul class="list-group">
+<!--  <div>-->
+<!--    <ul class="list-group">-->
 
-      <li class="list-group-item"  *ngFor="let item of list">
-        <input type="radio" name="list_name" value="{{item.card_id}}" (change)="onItemChange(item)"/>
-        {{item.card_number}}
+<!--    -->
 
-      </li>
 <!--      <li class="list-group-item"  *ngFor="let item of itemsList">-->
 <!--        <input type="radio" [(ngModel)]="radioSelected" name="list_name" value="{{item.value}}" (change)="onItemChange(item)"/>-->
 <!--        {{item.name}}-->
 
 <!--      </li>-->
-    </ul>
-  </div>
+<!--    </ul>-->
+<!--  </div>-->
 
 <!--  <h5>{{radioSelectedString}}</h5>-->
 
-</div>
+<!--</div>-->
+
+<h3>rohit </h3>
+<li class="list-group-item"  *ngFor="let item of list">
+  <input type="radio" name="list_name" value="{{item['card_id']}}" (change)="onItemChange(item)"/>
+  {{item['card_id']}}
+</li>

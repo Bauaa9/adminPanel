@@ -170,8 +170,8 @@ export class PaymentOptionsComponent implements OnInit {
   // tslint:disable-next-line: typedef
   payment(){
     let body={
-      // "cardType":this.user.type,
-      "cardType":"credit",
+      "cardType":this.user.type,
+      // "cardType":"credit",
       "cardNumber":this.encryptUsingAES256(this.user.cardNum),
       "cvv":this.user.cvv,
       "holderName":this.user.holderName,
