@@ -43,6 +43,11 @@ export class OtpComponent implements OnInit {
     this.spinner.show().then(r => console.log('loading'));
     this.apiService.api("post",body,'/verify-otp',true).subscribe(responseData => {
       this.spinner.hide().then(r => console.log('stopped'));
+      console.log(responseData)
+      if(responseData['status']=="failed"){
+        this.router.navigate(['/txn-failed'],);
+       return ;
+      }
       this.router.navigate(['/txn-success'],);
     },error => {
       this.router.navigate(['/txn-failed'],);
