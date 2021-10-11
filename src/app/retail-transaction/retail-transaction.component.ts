@@ -13,6 +13,8 @@ export class RetailTransactionComponent implements OnInit {
 
   responseData :any=[]
   config: any;
+  searchValue: string;
+
   constructor(private apiService:ApiService,private spinner:NgxSpinnerService,private datePipe: DatePipe) {
     this.config = {
       itemsPerPage: 5,

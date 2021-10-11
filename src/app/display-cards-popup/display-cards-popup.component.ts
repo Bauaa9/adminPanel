@@ -23,15 +23,20 @@ export class DisplayCardsPopupComponent implements OnInit {
 
       this.spinner.show().then(r => console.log('loading'));
       this.apiService.api("post",{},"/display-cards",true).subscribe(data => {
-        console.log(data['allCards']+'popsfpsdfsf');
         this.list=data['allCards'];
-        // data['allCards'].forEach((element)=>{
-        //   this.ITEMS.push(element.card_id,element.card_number)
-        // })
-        // console.log(this.ITEMS)
-        // this.itemsList = this.ITEMS;
-        // this.radioSelected = "1";
-        // this.getSelecteditem();
+        data['allCards'].forEach((element)=>{
+          this.ITEMS.push(element.card_id,element.card_number)
+        })
+        this.list.forEach((element)=>{
+          element['card_number'] =    element['card_number'] ?.slice(0, 4) + '  '
+            + element['card_number'] ?.slice(4, 8).replace(/\d/g, 'x') + '  '
+            + element['card_number'] ?.slice(8, 12).replace(/\d/g, 'x') + '  '
+            + element['card_number'] ?.slice(-4);
+        })
+        console.log(this.ITEMS)
+        this.itemsList = this.ITEMS;
+        this.radioSelected = "1";
+        this.getSelecteditem();
         this.spinner.hide().then(r => console.log('stopped'));
       });
 

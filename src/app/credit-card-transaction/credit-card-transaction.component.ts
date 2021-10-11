@@ -23,6 +23,13 @@ export class CreditCardTransactionComponent implements OnInit {
   })
   }
 
+  getMaskedCardNumber(tempstring:any){
+    return  tempstring ?.slice(0, 4) + '  '
+      + tempstring ?.slice(4, 8).replace(/\d/g, 'x') + '  '
+      + tempstring ?.slice(8, 12).replace(/\d/g, 'x') + '  '
+      + tempstring ?.slice(-4);
+  }
+
   ngOnInit() {
     this.spinner.show().then(r => console.log('loading'));
     this.apiService.api("post",{},'/creditdetails',true).subscribe((response)=>{

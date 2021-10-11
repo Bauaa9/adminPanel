@@ -1,3 +1,19 @@
+<div class="main" style="margin-left: 60%;">
+  <div class="form-group has-search">
+    <i class="fa fa-search form-control-feedback"></i>
+    <input type="text" [(ngModel)] = "searchValue"  class="form-control" placeholder="Search">
+  </div>
+
+  <!--<div class="form-inline md-form mr-auto mb-4" style="margin-left: 50%;">
+          <label for="search" class="col-sm-2 col-form-label" style="text-align: right; margin-left: 20%; color: black;">search</label>
+
+          <label mdbBtn size="sm" color="warning" outline="true" rounded="true" class="my-0 waves-light"
+          mdbWavesEffect type="submit">Search</label>
+     <div class="col-sm-4 w-25">
+       <input class="form-control mr-sm-2" type="text" [(ngModel)] = "searchValue" placeholder="Search" aria-label="Search">
+        <input type="text" [(ngModel)] = "searchValue" class="form-control" id="search"/>
+     </div>-->
+</div>
 
   <div style="margin-left: 5%; margin-right: 20px;margin-top: 3%;">
     <table class="table table-striped">
@@ -12,14 +28,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of responseData| paginate: config;let indexOfelement=index" class="text-dark border border-dark">
-          <th class="border border-dark">{{this.datePipe.transform(data.date_time,"dd MMM yyyy") }}</th>
-          <td class="border border-dark">{{data.merchant_name}}</td>
-          <td class="border border-dark">{{data.expenditure}}</td>
+        <tr *ngFor="let data of responseData| paginate: config | searchfilter: searchValue" class="text-dark border border-dark">
+          <th class="border border-dark">{{this.datePipe.transform(data["date_time"],"dd MMM yyyy") }}</th>
+          <td class="border border-dark">{{data["merchant_name"]}}</td>
+          <td class="border border-dark">{{data["expenditure"]}}</td>
 <!--          <td class="border border-dark">{{data.paymentDetail}}</td>-->
-          <td class="border border-dark">{{data.payment_method}}</td>
+          <td class="border border-dark">{{data["payment_method"]}}</td>
           <td class="border border-dark">{{data.status}}</td>
-
         </tr>
 
       </tbody>

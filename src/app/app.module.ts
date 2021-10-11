@@ -50,6 +50,7 @@ import {TxnSuccessComponent} from './txn-success/txn-success.component';
 import {TxnFailComponent} from './txn-fail/txn-fail.component';
 import { DisplayCardsPopupComponent } from './display-cards-popup/display-cards-popup.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {SearchFilterPipe} from '../services/searchFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AnnualGraphComponent,
     TxnSuccessComponent,
     TxnFailComponent,
-    DisplayCardsPopupComponent
+    DisplayCardsPopupComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
