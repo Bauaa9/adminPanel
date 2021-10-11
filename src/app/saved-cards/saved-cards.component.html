@@ -98,9 +98,10 @@
             </div>
           </div>
 
-          <div class="col">
-            <button mat-raised-button color="red" type="submit" [disabled]="!myForm.valid">Add Card
+          <div>
+            <button class="btn submitCard" mat-raised-button type="submit" [disabled]="!myForm.valid">Add Card
             </button>
+            <button class="btn cancel" mat-raised-button type="submit" (click)="click=false">Cancel</button>
           </div>
 
         </form>

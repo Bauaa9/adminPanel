@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {MatDialogRef} from '@angular/material/dialog';
 
 export class Item{
   name:any;
@@ -19,7 +20,7 @@ export class DisplayCardsPopupComponent implements OnInit {
   ITEMS: Item[] =[]
   list:any
 
-    constructor(private apiService:ApiService,private spinner:NgxSpinnerService) {
+    constructor(private apiService:ApiService,private spinner:NgxSpinnerService,public dialogRef: MatDialogRef<DisplayCardsPopupComponent>) {
 
       this.spinner.show().then(r => console.log('loading'));
       this.apiService.api("post",{},"/display-cards",true).subscribe(data => {
@@ -49,6 +50,7 @@ export class DisplayCardsPopupComponent implements OnInit {
 
   onItemChange(item){
     this.getSelecteditem();
+    this.dialogRef.close({data:item});
   }
 
   ngOnInit(): void {

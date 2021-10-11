@@ -10,7 +10,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 import * as CryptoJS from 'crypto-js';
 import {DisplayCardsPopupComponent} from '../display-cards-popup/display-cards-popup.component';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 @Component({
   selector: 'app-payment-options',
   templateUrl: './payment-options.component.html',
@@ -18,7 +18,8 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 })
 export class PaymentOptionsComponent implements OnInit {
 
-  constructor(private router: Router,private apiService:ApiService,private spinner:NgxSpinnerService,public dialog: MatDialog) {
+  constructor(private router: Router,private apiService:ApiService,private spinner:NgxSpinnerService,
+              public dialog: MatDialog) {
     this.user = new User();
     this.formBuilder = new FormBuilder();
 
@@ -65,14 +66,20 @@ export class PaymentOptionsComponent implements OnInit {
   openDialog() {
     const dialogConfig=new MatDialogConfig();
     dialogConfig.disableClose=true;
-    //dialogConfig.width="50%";
-    //dialogConfig.height="50%";
-    this.dialog.open(DisplayCardsPopupComponent);
+    this.dialog.open(DisplayCardsPopupComponent).afterClosed()
+      .subscribe(response => {
+        const jsonValue = JSON.stringify(response);
+        const valueFromJson = JSON.parse(jsonValue);
+        console.log()
+        this.user.cardNum=valueFromJson['data']['card_number'];
+        this.user.holderName=valueFromJson['data']['card_holder_name'];
+        this.user.expDate=valueFromJson['data']['expiry_date'];
+        this.user.type=valueFromJson['data']['card_type'];
+        this.generateTxnId();
+      });
   }
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    // this.openDialog();
-    this.generateTxnId();
     this.myForm = this.formBuilder.group({
       holderName: [
         null,
@@ -104,6 +111,7 @@ export class PaymentOptionsComponent implements OnInit {
       type : ['', Validators.required]
 
     });
+    this.openDialog();
 
   }
 
@@ -130,14 +138,18 @@ export class PaymentOptionsComponent implements OnInit {
     console.log('mod:' + num);
     num = num?.replace(/\s/g, '');
  // 1. Remove last digit;
-    const lastDigit = Number(num[num?.length - 1]);
+    let lastDigit,reverseCardNumber;
+    let sum = 0;
+
+    if(num !=null){
+
+      lastDigit= Number(num[num?.length - 1]);
  // 2. Reverse card number
-    const reverseCardNumber = num
+    reverseCardNumber = num
    .slice(0, num.length - 1)
    .split('')
    .reverse()
    .map(x => Number(x));
-    let sum = 0;
  // 3. + 4. Multiply by 2 every digit on odd position.
  // Subtract 9 if digit > 9
     for (let i = 0; i <= reverseCardNumber.length - 1; i += 2){
@@ -151,6 +163,8 @@ export class PaymentOptionsComponent implements OnInit {
   .reduce((acc, currValue) => (acc + currValue), 0);
 // 6. Calculate modulo 10 of the sum from step 5 and the last digit.
 // If it's 0, you have a valid card number :)
+    }
+
     return ((sum + lastDigit) % 10 === 0);
 }
 

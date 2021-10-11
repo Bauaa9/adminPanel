@@ -125,3 +125,13 @@ button:hover {
   height: 300px;
   float: right;
 }
+.drop {
+  width: 85%;
+  margin-bottom: 5%;
+}
+
+.drop select:focus {
+  outline: none;
+  border-color: #1f4c69;
+  box-shadow: 0 0 10px #1f4c69;
+}
