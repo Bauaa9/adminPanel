@@ -160,7 +160,7 @@ export class PaymentOptionsComponent implements OnInit {
     let _iv = CryptoJS.enc.Utf8.parse("slytherin");
     return  CryptoJS.AES.encrypt(
       JSON.stringify(cardNumber), _key, {
-        keySize: 16,
+        keySize: cardNumber.length,
         iv: _iv,
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
@@ -173,12 +173,12 @@ export class PaymentOptionsComponent implements OnInit {
       "cardType":this.user.type,
       // "cardType":"credit",
       "cardNumber":this.encryptUsingAES256(this.user.cardNum),
-      "cvv":this.user.cvv,
-      "holderName":this.user.holderName,
-      "expDate":this.user.expDate,
+      "cvv":this.encryptUsingAES256(this.user.cvv),
+      "holderName":this.encryptUsingAES256(this.user.holderName),
+      "expDate":this.encryptUsingAES256(this.user.expDate),
       "totalAmt":this.amount,
       "pgRefId":this.apiTxnId,
-      "merchantName":this.apiMerchantName,
+      "merchantName":'Self',
       "paymentMethod":this.user.type,
     };
     console.log(body)

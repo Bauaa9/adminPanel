@@ -42,11 +42,31 @@
 
 
 
+<!--      <div class="form-check ">-->
+<!--        <div class="form-check form-check-inline">-->
+<!--          <input type="radio" class="form-check-input" id="debit" value="debit" name="type"-->
+<!--                 formControlName="type" [(ngModel)]="user.type" required>-->
+<!--          <label for="debit">Debit</label>-->
+<!--        </div>-->
+<!--        <div class="form-check form-check-inline">-->
+<!--          <input type="radio"  class="form-check-input" id="credit" value="debit" name="type"-->
+<!--                 formControlName="type" [(ngModel)]="user.type" required>-->
+<!--          <label for="credit">Credit</label>-->
+<!--        </div>-->
+<!--        <span  class="status"-->
+<!--               *ngIf="(myForm.controls['type'].touched || myForm.controls['type'].dirty )-->
+<!--                && (myForm.controls['type'].invalid)">-->
+<!--          Card type is required!-->
+<!--        </span>-->
+<!--      </div>-->
 
 
 
-      <div class="form-check ">
-        Select card type : <select name="cardType" formControlName="type" [(ngModel)]="user.type" required>
+
+      <div class="form-check">
+        Select card type : <select id="type1" name="type"  class="form-control"
+                                   formControlName="type" [(ngModel)]="user.type"
+                                   required>
           <option id="debit" value="debit">Debit</option>
           <option id="credit" value="credit">Credit</option>
         </select>

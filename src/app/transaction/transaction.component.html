@@ -83,7 +83,7 @@ select {
 				position: relative;
 				display: block;
 				width: 15em;
-				height: 2em;
+				height: 3em;
 				line-height: 3;
 				overflow: hidden;
 				border-radius: .25em;
@@ -116,7 +116,7 @@ select {
   <br>
   <b style="text-align:left; padding-left: 20px">Select for Filter:</b><br>
   <div style="text-align:left; padding-left: 20px" class="select" >
-    <select style="text-align:left; padding-left: 20px" #organization (change)="selectfilterOption(organization.value)"  >
+    <select  style="text-align:left; padding-left: 20px" #organization (change)="selectfilterOption(organization.value)"  >
       <option>Today</option>
       <option>Month</option>
       <option>Year</option>
@@ -216,7 +216,9 @@ select {
   <button type="button" (click)="AnnualGraph()">Annual Graph</button>
 </div>
 <br>
-<app-graph *ngIf="currentGraphindex==0"></app-graph>
+  <br>
+
+  <app-graph *ngIf="currentGraphindex==0"></app-graph>
 <app-monthly-graph *ngIf="currentGraphindex==1"></app-monthly-graph>
 <app-annual-graph *ngIf="currentGraphindex==2"></app-annual-graph>
 

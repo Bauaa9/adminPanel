@@ -3,7 +3,6 @@
     <table class="table table-striped">
       <thead>
         <tr class=" bg-dark" style="color: orangered;">
-          <th scope="col" class="border border-white">Sr.no</th>
           <th scope="col" class="border border-white">Txn Dt/Time</th>
           <th scope="col" class="border border-white">Merchant Name</th>
           <th scope="col" class="border border-white">Amt(Rs)</th>
@@ -13,8 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of responseData;let indexOfelement=index;" class="text-dark border border-dark">
-          <td class="border border-dark">{{indexOfelement+1}}</td>
+        <tr *ngFor="let data of responseData| paginate: config;let indexOfelement=index" class="text-dark border border-dark">
           <th class="border border-dark">{{this.datePipe.transform(data.date_time,"dd MMM yyyy") }}</th>
           <td class="border border-dark">{{data.merchant_name}}</td>
           <td class="border border-dark">{{data.expenditure}}</td>
@@ -28,16 +26,9 @@
     </table>
     </div>
 
-
-<!--    <nav aria-label="Page navigation example" class="float-right">-->
-<!--      <ul class="pagination">-->
-<!--        <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
-<!--      </ul>-->
-<!--    </nav>-->
+    <nav aria-label="Page navigation example" class="float-right">
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </nav>
 
 
 

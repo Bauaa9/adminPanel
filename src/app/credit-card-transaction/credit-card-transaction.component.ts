@@ -15,8 +15,7 @@ import {DisplayOtpExpiryComponent} from '../display-otp-expiry/display-otp-expir
 export class CreditCardTransactionComponent implements OnInit {
 
   responseData:any;
-  closeResult: string;
-   showStatementTabs=false;
+  closeResult: string;   showStatementTabs=false;
   constructor(public dialog: MatDialog
     ,private apiService:ApiService,private spinner:NgxSpinnerService,private subscriptionService:SubscribeService) {
   this.subscriptionService.showViewStatementTabs.subscribe(value => {

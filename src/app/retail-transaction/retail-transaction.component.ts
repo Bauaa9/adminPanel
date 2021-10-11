@@ -12,8 +12,19 @@ import {DatePipe} from '@angular/common';
 export class RetailTransactionComponent implements OnInit {
 
   responseData :any=[]
+  config: any;
+  constructor(private apiService:ApiService,private spinner:NgxSpinnerService,private datePipe: DatePipe) {
+    this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.responseData.count
+    };
+  }
 
-  constructor(private apiService:ApiService,private spinner:NgxSpinnerService,private datePipe: DatePipe) { }
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
+
 
   ngOnInit(): void {
     this.spinner.show().then(r => console.log('loading'));

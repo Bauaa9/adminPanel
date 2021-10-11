@@ -49,6 +49,7 @@ import {ChartsModule} from 'ng2-charts';
 import {TxnSuccessComponent} from './txn-success/txn-success.component';
 import {TxnFailComponent} from './txn-fail/txn-fail.component';
 import { DisplayCardsPopupComponent } from './display-cards-popup/display-cards-popup.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { DisplayCardsPopupComponent } from './display-cards-popup/display-cards-
     MatDialogModule,
     NgCircleProgressModule,
     ChartsModule,
+    NgxPaginationModule
   ],
   providers: [DatePipe,AuthGuard,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,CircleProgressOptions],
