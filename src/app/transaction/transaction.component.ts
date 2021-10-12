@@ -88,11 +88,11 @@ duration:String='';
    }
 
    formatSubtitle3 = () : string => {
-    return "SUCCESSFUL TRANSACTION";
+    return "SUCCESSFUL TXN";
    }
 
    formatSubtitle4 = () : string => {
-    return "FAILED TRANSACTION";
+    return "FAILED TXN";
    }
 
 
