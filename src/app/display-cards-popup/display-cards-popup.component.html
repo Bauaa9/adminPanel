@@ -4,11 +4,13 @@
   <div>
     <ul class="list-group">
       <li class="list-group-item"  *ngFor="let item of list">
-        <input type="radio" name="list_name" value="{{item['card_id']}}" (change)="onItemChange(item)"/>
-        {{ getMaskedCardNumber(item['card_number']) }}
+        <input *ngIf="item['card_id']!=1" type="radio" name="list_name" value="{{item['card_id']}}" (change)="onItemChange(item)"/>
+        <span  *ngIf="item['card_id']!=1" > {{ getMaskedCardNumber(item['card_number']) }}</span>
       </li>
     </ul>
   </div>
+  <br><br>
+  <button class="btn btn-danger" (click)="popupDialog()" >Add card details manually</button>
 
 <!--  <h5>{{radioSelectedString}}</h5>-->
 

@@ -58,4 +58,7 @@ export class DisplayCardsPopupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  popupDialog() {
+    this.dialogRef.close();
+  }
 }

@@ -32,13 +32,12 @@
             <div class="d-flex flex-column">
               <span class="light">{{responseData?.cardetails?.cardHolderName}}</span><span></span>
             </div>
-            <div class="d-flex flex-row">
-              <div class="d-flex flex-column mr-3">
-<!--                <button mat-button (click)="openDialog()">Open dialog box</button>-->
-                <button type="button" class="btn btn-success" (click)="openDialog()">CVV/EXP Date</button>
-              </div>
+<!--            <div class="d-flex flex-row">-->
+<!--              <div class="d-flex flex-column mr-3">-->
+<!--                <button type="button" class="btn btn-success" (click)="openDialog()">CVV/EXP Date</button>-->
+<!--              </div>-->
 
-            </div>
+<!--            </div>-->
           </div>
         </div>
       </div></div>
@@ -52,7 +51,7 @@
     </tr>
     <tr>
       <td>Total Cr Limit  <label  style="color: rgb(9, 9, 61)"> :Rs {{responseData?.cardlimit?.totalcreditlimit}}</label></td>
-      <td>Avail. Cr Limit  <label  style="color: rgb(9, 9, 61)"> :{{responseData?.cardlimit?.availablecreditlimit}}</label> </td>
+      <td>Avail. Cr Limit  <label  style="color: rgb(9, 9, 61)"> :Rs {{responseData?.cardlimit?.availablecreditlimit}}</label> </td>
     </tr>
     <tr>
       <td >Total Cash Limit  <label  style="color: rgb(9, 9, 61)"> :Rs {{responseData?.cardlimit?.totalcashlimit}}</label></td>

@@ -30,7 +30,7 @@ export class GraphComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ser.getGraphData("Year")
+    this.ser.getGraphData("Week")
     .subscribe( data4=> {
       //this.perData=data4;
       console.log('graph ke andr',data4);

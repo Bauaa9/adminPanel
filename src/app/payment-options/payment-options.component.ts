@@ -65,17 +65,19 @@ export class PaymentOptionsComponent implements OnInit {
 
   openDialog() {
     const dialogConfig=new MatDialogConfig();
-    dialogConfig.disableClose=true;
+    dialogConfig.disableClose=false;
     this.dialog.open(DisplayCardsPopupComponent).afterClosed()
       .subscribe(response => {
-        const jsonValue = JSON.stringify(response);
-        const valueFromJson = JSON.parse(jsonValue);
-        console.log()
-        this.user.cardNum=valueFromJson['data']['card_number'];
-        this.user.holderName=valueFromJson['data']['card_holder_name'];
-        this.user.expDate=valueFromJson['data']['expiry_date'];
-        this.user.type=valueFromJson['data']['card_type'];
-        this.generateTxnId();
+        if(response!=null){
+          const jsonValue = JSON.stringify(response);
+          const valueFromJson = JSON.parse(jsonValue);
+          this.user.cardNum=valueFromJson['data']['card_number'];
+          this.user.holderName=valueFromJson['data']['card_holder_name'];
+          this.user.expDate=valueFromJson['data']['expiry_date'];
+          this.user.type=valueFromJson['data']['card_type'];
+          this.generateTxnId();
+        }
+
       });
   }
   // tslint:disable-next-line: typedef
@@ -135,6 +137,9 @@ export class PaymentOptionsComponent implements OnInit {
   }
 
   mod10 = (num:any ): boolean => {
+    if(num==null){
+      return true;
+    }
     console.log('mod:' + num);
     num = num?.replace(/\s/g, '');
  // 1. Remove last digit;
