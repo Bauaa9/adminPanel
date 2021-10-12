@@ -18,6 +18,7 @@ export class LastStatementComponent implements OnInit {
     this.spinner.show().then(r => console.log('loading'));
     this.apiService.api("post",{},'/billed-transactions',true).subscribe((response)=>{
       this.responseData=response;
+      console.log(this.responseData)
       this.spinner.hide().then(r => console.log('stopped'));
     })
   }

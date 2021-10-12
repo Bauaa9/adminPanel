@@ -169,27 +169,17 @@ export class PaymentOptionsComponent implements OnInit {
 }
 
 
-   encryptUsingAES256(cardNumber:string) {
-    let _key = CryptoJS.enc.Utf8.parse("slytherin");
-    let _iv = CryptoJS.enc.Utf8.parse("slytherin");
-    return  CryptoJS.AES.encrypt(
-      JSON.stringify(cardNumber), _key, {
-        keySize: cardNumber.length,
-        iv: _iv,
-        mode: CryptoJS.mode.ECB,
-        padding: CryptoJS.pad.Pkcs7
-      }).toString();
-  }
 
   // tslint:disable-next-line: typedef
   payment(){
     let body={
       "cardType":this.user.type,
       // "cardType":"credit",
-      "cardNumber":this.encryptUsingAES256(this.user.cardNum),
-      "cvv":this.encryptUsingAES256(this.user.cvv),
-      "holderName":this.encryptUsingAES256(this.user.holderName),
-      "expDate":this.encryptUsingAES256(this.user.expDate),
+      "cardNumber":this.user.cardNum
+      ,
+      "cvv":this.user.cvv,
+      "holderName":this.user.holderName,
+      "expDate":this.user.expDate,
       "totalAmt":this.amount,
       "pgRefId":this.apiTxnId,
       "merchantName":'Self',

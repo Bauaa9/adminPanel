@@ -5,7 +5,7 @@
     <ul class="list-group">
       <li class="list-group-item"  *ngFor="let item of list">
         <input type="radio" name="list_name" value="{{item['card_id']}}" (change)="onItemChange(item)"/>
-        {{item['card_number']}}
+        {{ getMaskedCardNumber(item['card_number']) }}
       </li>
     </ul>
   </div>

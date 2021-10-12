@@ -28,12 +28,7 @@ export class DisplayCardsPopupComponent implements OnInit {
         data['allCards'].forEach((element)=>{
           this.ITEMS.push(element.card_id,element.card_number)
         })
-        this.list.forEach((element)=>{
-          element['card_number'] =    element['card_number'] ?.slice(0, 4) + '  '
-            + element['card_number'] ?.slice(4, 8).replace(/\d/g, 'x') + '  '
-            + element['card_number'] ?.slice(8, 12).replace(/\d/g, 'x') + '  '
-            + element['card_number'] ?.slice(-4);
-        })
+
         console.log(this.ITEMS)
         this.itemsList = this.ITEMS;
         this.radioSelected = "1";
@@ -46,6 +41,13 @@ export class DisplayCardsPopupComponent implements OnInit {
   getSelecteditem(){
     this.radioSel = this.ITEMS.find(Item => Item.value === this.radioSelected);
     this.radioSelectedString = JSON.stringify(this.radioSel);
+  }
+
+  getMaskedCardNumber(tempstring:any){
+    return  tempstring ?.slice(0, 4) + '  '
+      + tempstring ?.slice(4, 8).replace(/\d/g, 'x') + '  '
+      + tempstring ?.slice(8, 12).replace(/\d/g, 'x') + '  '
+      + tempstring ?.slice(-4);
   }
 
   onItemChange(item){

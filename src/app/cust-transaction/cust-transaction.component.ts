@@ -20,7 +20,6 @@ export class CustTransactionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.openDialog();
   }
 
 }
