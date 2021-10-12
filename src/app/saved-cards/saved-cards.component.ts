@@ -6,6 +6,9 @@ import {ApiService} from '../../services/api.service';
 import {Card} from '../../models/Card';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {DatePipe} from '@angular/common';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {DisplayCardsPopupComponent} from '../display-cards-popup/display-cards-popup.component';
+import {AlertDeleteCardComponent} from '../alert-delete-card/alert-delete-card.component';
 
 @Component({
   selector: 'app-saved-cards',
@@ -33,7 +36,8 @@ export class SavedCardsComponent implements OnInit {
   n: number;
   dum:any;
 
-constructor(private router: Router, private service:ApiService,private spinner:NgxSpinnerService,private datePipe:DatePipe) {
+constructor(private router: Router,
+            public dialog: MatDialog,private service:ApiService,private spinner:NgxSpinnerService,private datePipe:DatePipe) {
     this.card = new Card();
     this.formBuilder = new FormBuilder();
   }
@@ -186,19 +190,31 @@ convert() {
     }
   }
 
+  openDialog1(del: any) {
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=false;
+    this.dialog.open(AlertDeleteCardComponent).afterClosed()
+      .subscribe(response => {
+        if(response!=null){
+          this.spinner.show();
+          this.service.api("delete",{},"/delete-card/"+del.card_id,true)
+            .subscribe(
+              (resp) => {
+                console.log(resp);
+                this.displayCard();
+              },
+              (err) => {
+                console.log(err);
+                this.displayCard();
+              }
+            );
+        }
+
+      });
+  }
+
   // tslint:disable-next-line: typedef
   deleteCard(del: any) {
-    this.spinner.show();
-    this.service.api("delete",{},"/delete-card/"+del.card_id,true)
-    .subscribe(
-      (resp) => {
-        console.log(resp);
-        this.displayCard();
-      },
-      (err) => {
-        console.log(err);
-        this.displayCard();
-      }
-    );
+    this.openDialog1(del);
   }
 }

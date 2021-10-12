@@ -51,6 +51,7 @@ import {TxnFailComponent} from './txn-fail/txn-fail.component';
 import { DisplayCardsPopupComponent } from './display-cards-popup/display-cards-popup.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {SearchFilterPipe} from '../services/searchFilter.pipe';
+import { AlertDeleteCardComponent } from './alert-delete-card/alert-delete-card.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import {SearchFilterPipe} from '../services/searchFilter.pipe';
     TxnSuccessComponent,
     TxnFailComponent,
     DisplayCardsPopupComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    AlertDeleteCardComponent
   ],
   imports: [
     BrowserModule,
