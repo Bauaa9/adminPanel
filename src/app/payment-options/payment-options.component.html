@@ -79,30 +79,30 @@
 
       <div class="form-row">
           <label for="cardNum">Card Number :</label>
-          <input #cardNum  (input)="getNum($event.target.value)" [style.background-image]=finalUrl
-            [mask]="'[0000] [0000] [0000] [0000]'" (extractedValue)="user.cardNum"
+          <input #cardNum  (keyup)="getNum(user.cardNum)" [style.background-image]=finalUrl
+            [mask]="'[0000] [0000] [0000] [0000]'"
             type="text" class="form-control" id="cardNum" name="cardNum"
             formControlName="cardNum" [(ngModel)]="user.cardNum" maxlength=19
           >
-          <span  class="status"
-            *ngIf="(myForm.controls['cardNum'].touched || myForm.controls['cardNum'].dirty )
+        <span  class="status"
+               *ngIf="(myForm.controls['cardNum'].touched || myForm.controls['cardNum'].dirty )
                   && (myForm.controls['cardNum'].invalid)
                   && (myForm.controls['cardNum'].hasError('required'))">
             Card number is required!
           </span>
-          <span class="status"
-            *ngIf="(myForm.controls['cardNum'].hasError('pattern'))">
+        <span class="status"
+              *ngIf="(myForm.controls['cardNum'].hasError('pattern'))">
             Enter valid Card number!
           </span>
-          <span class="status"
-            *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
+        <span class="status"
+              *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
                   && (myForm.controls['cardNum'].hasError('minlength'))">
             Card number must be 16 digits!
           </span>
-          <span class="status"
-            *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
-                  && mod10(myForm.controls.cardNum.value) == false">
-            Enter valid Card number!
+        <span class="status"
+              *ngIf="!(myForm.controls['cardNum'].hasError('pattern'))
+                  && mod10(myForm.controls['cardNum'].value)==false">
+            Enter valid Card number mod!
           </span>
 
       </div>

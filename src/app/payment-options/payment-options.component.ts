@@ -22,7 +22,38 @@ export class PaymentOptionsComponent implements OnInit {
               public dialog: MatDialog) {
     this.user = new User();
     this.formBuilder = new FormBuilder();
+    this.myForm = this.formBuilder.group({
+      holderName: [
+        null,
+        [ Validators.required,
+          // Validators.pattern('^[ a-zA-Z]+$')
+        ]
+      ],
+      cardNum: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern('^[4,5][0-9]{3}\\s[0-9]{4}\\s[0-9]{4}\\s[0-9]{4}'),
+          // Validators.pattern('^[4,5][0-9]{15}'),
+          // Validators.pattern('^[4,5][0-9]*$'),
+          Validators.minLength(16),
+          Validators.maxLength(19),
+        ]
+      ],
+      cvv: [
+        null, [
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+          Validators.minLength(3),
+          Validators.maxLength(3)
+        ]
+      ],
 
+      expDate : ['', Validators.required],
+
+      type : ['', Validators.required]
+
+    });
   }
 
   slytherin = images.slytherin;
@@ -72,47 +103,19 @@ export class PaymentOptionsComponent implements OnInit {
           const jsonValue = JSON.stringify(response);
           const valueFromJson = JSON.parse(jsonValue);
           this.user.cardNum=valueFromJson['data']['card_number'];
+          let any= this.user.cardNum.match(/.{1,4}/g);
+          this.user.cardNum = any.join(' ')
           this.user.holderName=valueFromJson['data']['card_holder_name'];
           this.user.expDate=valueFromJson['data']['expiry_date'];
           this.user.type=valueFromJson['data']['card_type'];
-          this.generateTxnId();
         }
+        this.generateTxnId();
 
       });
   }
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.myForm = this.formBuilder.group({
-      holderName: [
-        null,
-        [ Validators.required,
-          // Validators.pattern('^[ a-zA-Z]+$')
-        ]
-      ],
-      cardNum: [
-        null,
-        [
-          Validators.required,
-          Validators.pattern('^[4,5][0-9]{3}\\s[0-9]{4}\\s[0-9]{4}\\s[0-9]{4}'),
-          Validators.minLength(16),
-          Validators.maxLength(19),
-          //this.cardValidator.luhnValidator()
-        ]
-      ],
-      cvv: [
-        null, [
-          Validators.required,
-          Validators.pattern('^[0-9]*$'),
-          Validators.minLength(3),
-          Validators.maxLength(3)
-        ]
-      ],
 
-      expDate : ['', Validators.required],
-
-      type : ['', Validators.required]
-
-    });
     this.openDialog();
 
   }

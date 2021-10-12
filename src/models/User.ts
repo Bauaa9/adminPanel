@@ -1,6 +1,6 @@
 export class User {
   holderName = '';
-  cardNum: '';
+  cardNum= '';
   cvv: '';
   expDate: any;
   type = '';
